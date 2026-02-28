@@ -1,0 +1,3243 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A library of checklist generation and scoring methods for evaluation">
+      
+      
+      
+        <link rel="canonical" href="https://autochecklist.github.io/docs/user-guide/supported-pipelines/">
+      
+      
+        <link rel="prev" href="../scorers/">
+      
+      
+        <link rel="next" href="../custom-prompts/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+    
+    
+      
+        <title>Supported Pipelines - autochecklist</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../overrides/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#supported-pipelines" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="autochecklist" class="md-header__button md-logo" aria-label="autochecklist" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            autochecklist
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Supported Pipelines
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ChicagoHAI/AutoChecklist" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ChicagoHAI/AutoChecklist
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../getting-started/installation/" class="md-tabs__link">
+          
+  
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../pipeline/" class="md-tabs__link">
+          
+  
+  
+  User Guide
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../autoapi/autochecklist/" class="md-tabs__link">
+          
+  
+  
+  API Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="autochecklist" class="md-nav__button md-logo" aria-label="autochecklist" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    autochecklist
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ChicagoHAI/AutoChecklist" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ChicagoHAI/AutoChecklist
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    User Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pipeline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pipeline & Composability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../generators/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Generators
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../refiners/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Refiners
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scorers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scorers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Supported Pipelines
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Supported Pipelines
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instance-level-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Instance-Level Methods
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Instance-Level Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tick" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TICK
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rocketeval" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RocketEval
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rlcf-reinforcement-learning-from-checklist-feedback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RLCF (Reinforcement Learning from Checklist Feedback)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RLCF (Reinforcement Learning from Checklist Feedback)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rlcf-direct" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RLCF Direct
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rlcf-candidate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RLCF Candidate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rlcf-candidates-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RLCF Candidates Only
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#corpus-level-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Corpus-Level Methods
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Corpus-Level Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#feedback-from-feedback-to-checklists" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Feedback (From Feedback to Checklists)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checkeval" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CheckEval
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interacteval" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        InteractEval
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comparison-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comparison Table
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../custom-prompts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Custom Prompts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../providers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Providers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    autochecklist
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    autochecklist
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../autoapi/autochecklist/cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    cli
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../autoapi/autochecklist/config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    config
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1_3" id="__nav_4_1_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    generators
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    generators
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../autoapi/autochecklist/generators/base/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    base
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_1_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1_3_2" id="__nav_4_1_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    corpus_level
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_1_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    corpus_level
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../autoapi/autochecklist/generators/corpus_level/deductive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    deductive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../autoapi/autochecklist/generators/corpus_level/inductive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    inductive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../autoapi/autochecklist/generators/corpus_level/interactive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    interactive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_1_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1_3_3" id="__nav_4_1_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    instance_level
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_1_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    instance_level
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../autoapi/autochecklist/generators/instance_level/contrastive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    contrastive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../autoapi/autochecklist/generators/instance_level/direct/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    direct
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../autoapi/autochecklist/generators/instance_level/pipeline_presets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pipeline_presets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../autoapi/autochecklist/models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    models
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../autoapi/autochecklist/pipeline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pipeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../autoapi/autochecklist/prompts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    prompts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_1_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1_7" id="__nav_4_1_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    providers
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_1_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    providers
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../autoapi/autochecklist/providers/base/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    base
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../autoapi/autochecklist/providers/factory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    factory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../autoapi/autochecklist/providers/http_client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    http_client
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../autoapi/autochecklist/providers/vllm_offline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    vllm_offline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_1_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1_8" id="__nav_4_1_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    refiners
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_1_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    refiners
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../autoapi/autochecklist/refiners/base/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    base
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../autoapi/autochecklist/refiners/deduplicator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    deduplicator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../autoapi/autochecklist/refiners/selector/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    selector
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../autoapi/autochecklist/refiners/tagger/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    tagger
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../autoapi/autochecklist/refiners/unit_tester/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    unit_tester
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../autoapi/autochecklist/registry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    registry
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_1_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1_10" id="__nav_4_1_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    scorers
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_1_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    scorers
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../autoapi/autochecklist/scorers/base/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    base
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_1_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1_11" id="__nav_4_1_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    utils
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_1_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    utils
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../autoapi/autochecklist/utils/embeddings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    embeddings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../autoapi/autochecklist/utils/io/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    io
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../autoapi/autochecklist/utils/parsing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    parsing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instance-level-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Instance-Level Methods
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Instance-Level Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tick" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TICK
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rocketeval" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RocketEval
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rlcf-reinforcement-learning-from-checklist-feedback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RLCF (Reinforcement Learning from Checklist Feedback)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RLCF (Reinforcement Learning from Checklist Feedback)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rlcf-direct" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RLCF Direct
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rlcf-candidate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RLCF Candidate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rlcf-candidates-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RLCF Candidates Only
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#corpus-level-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Corpus-Level Methods
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Corpus-Level Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#feedback-from-feedback-to-checklists" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Feedback (From Feedback to Checklists)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checkeval" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CheckEval
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interacteval" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        InteractEval
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comparison-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comparison Table
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="supported-pipelines">Supported Pipelines<a class="headerlink" href="#supported-pipelines" title="Permanent link">&para;</a></h1>
+<p>This page documents each evaluation method implemented in autochecklist: the original paper's methodology, how it was evaluated, and how this library implements it.</p>
+<div class="admonition note">
+<p class="admonition-title">Implementation Scope</p>
+<p>These pipelines aim to capture the <strong>core algorithms</strong> of each paper (the generation strategies, scoring formulas, and refinement pipelines) in a composable, provider-agnostic way. Some paper-specific details (supervised score predictors, dataset-specific tuning, exact prompts) are simplified or omitted. Each pipeline section below notes the specific differences.</p>
+</div>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>Pipelines are named presets that configure a <a href="../generators/">generator</a> with a specific prompt template and default scorer. Each pipeline implements a method from a research paper.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Level</th>
+<th>Pipeline Name</th>
+<th>Generator Class</th>
+<th>Approach</th>
+<th>Primary Metric</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TICK</td>
+<td>Instance</td>
+<td><code>tick</code></td>
+<td><code>DirectGenerator</code></td>
+<td>Direct inference</td>
+<td><code>pass_rate</code></td>
+</tr>
+<tr>
+<td>RocketEval</td>
+<td>Instance</td>
+<td><code>rocketeval</code></td>
+<td><code>DirectGenerator</code></td>
+<td>Direct inference</td>
+<td><code>normalized_score</code></td>
+</tr>
+<tr>
+<td>RLCF Direct</td>
+<td>Instance</td>
+<td><code>rlcf_direct</code></td>
+<td><code>DirectGenerator</code></td>
+<td>Direct inference</td>
+<td><code>weighted_score</code></td>
+</tr>
+<tr>
+<td>RLCF Candidate</td>
+<td>Instance</td>
+<td><code>rlcf_candidate</code></td>
+<td><code>ContrastiveGenerator</code></td>
+<td>Counterfactual reasoning</td>
+<td><code>weighted_score</code></td>
+</tr>
+<tr>
+<td>RLCF Candidates Only</td>
+<td>Instance</td>
+<td><code>rlcf_candidates_only</code></td>
+<td><code>ContrastiveGenerator</code></td>
+<td>Counterfactual reasoning</td>
+<td><code>weighted_score</code></td>
+</tr>
+<tr>
+<td>Feedback</td>
+<td>Corpus</td>
+<td><code>feedback</code></td>
+<td><code>InductiveGenerator</code></td>
+<td>Inductive (bottom-up)</td>
+<td><code>pass_rate</code></td>
+</tr>
+<tr>
+<td>CheckEval</td>
+<td>Corpus</td>
+<td><code>checkeval</code></td>
+<td><code>DeductiveGenerator</code></td>
+<td>Deductive (top-down)</td>
+<td><code>pass_rate</code></td>
+</tr>
+<tr>
+<td>InteractEval</td>
+<td>Corpus</td>
+<td><code>interacteval</code></td>
+<td><code>InteractiveGenerator</code></td>
+<td>Protocol analysis</td>
+<td><code>pass_rate</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="instance-level-methods">Instance-Level Methods<a class="headerlink" href="#instance-level-methods" title="Permanent link">&para;</a></h2>
+<h3 id="tick">TICK<a class="headerlink" href="#tick" title="Permanent link">&para;</a></h3>
+<p><strong>Paper:</strong> <a href="https://arxiv.org/abs/2410.03608">arXiv:2410.03608</a></p>
+<p><strong>Original methodology:</strong> TICK generates checklists from the input instruction alone, using few-shot prompting. The LLM reads an instruction and produces 2–8 yes/no questions that capture the task requirements. Each question is scored individually with chain-of-thought reasoning. Evaluated on InFoBench. The key insight is that task-specific checklists provide more fine-grained evaluation than single-score rubrics.</p>
+<p><strong>Our implementation:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pipeline</td>
+<td><code>tick</code></td>
+</tr>
+<tr>
+<td>Generator</td>
+<td><code>DirectGenerator</code> with <code>tick/generate.md</code> template</td>
+</tr>
+<tr>
+<td>Input required</td>
+<td><code>input</code> only</td>
+</tr>
+<tr>
+<td>Temperature</td>
+<td>0.7</td>
+</tr>
+<tr>
+<td>Max items</td>
+<td>8 (min 2)</td>
+</tr>
+<tr>
+<td>Response schema</td>
+<td><code>ChecklistResponse</code> (unweighted)</td>
+</tr>
+<tr>
+<td>Primary metric</td>
+<td><code>pass_rate</code></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">autochecklist</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">pipe</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;tick&quot;</span><span class="p">,</span> <span class="n">generator_model</span><span class="o">=</span><span class="s2">&quot;openai/gpt-5-mini&quot;</span><span class="p">,</span> <span class="n">scorer_model</span><span class="o">=</span><span class="s2">&quot;openai/gpt-5-mini&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">result</span> <span class="o">=</span> <span class="n">pipe</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="s2">&quot;Write a haiku about autumn.&quot;</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="s2">&quot;Leaves fall gently...&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">pass_rate</span><span class="p">)</span>
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Paper-Faithful Scoring</p>
+<p>The original paper scores each item individually with reasoning. To match this behavior, override the scorer:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">pipe</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;tick&quot;</span><span class="p">,</span> <span class="n">generator_model</span><span class="o">=</span><span class="s2">&quot;openai/gpt-5-mini&quot;</span><span class="p">,</span> <span class="n">scorer</span><span class="o">=</span><span class="s2">&quot;item&quot;</span><span class="p">)</span>
+</code></pre></div></p>
+</div>
+<p><strong>Differences from paper:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Paper feature</th>
+<th>Our implementation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Per-item scoring with reasoning</td>
+<td>Default is batch mode for efficiency; use <code>scorer="item"</code> for paper-faithful behavior</td>
+</tr>
+<tr>
+<td>Few-shot prompt with hand-crafted examples</td>
+<td>Structured JSON output (<code>ChecklistResponse</code> schema) replaces few-shot format guidance</td>
+</tr>
+<tr>
+<td>Dataset-level DRFR aggregation metric</td>
+<td><code>BatchResult.micro_pass_rate</code> implements DRFR (micro-averaged pass rate) for dataset-level aggregation</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="rocketeval">RocketEval<a class="headerlink" href="#rocketeval" title="Permanent link">&para;</a></h3>
+<p><strong>Paper:</strong> <a href="https://arxiv.org/abs/2503.05142">arXiv:2503.05142</a></p>
+<p><strong>Original methodology:</strong> RocketEval generates checklists from the input instruction, a reference response, and optionally conversation history. The key innovation is in scoring: instead of binary yes/no, it uses <strong>logprob confidence calibration</strong> — computing <code>P(Yes) / (P(Yes) + P(No))</code> from the model's token probabilities and mapping to 5 confidence levels. This produces finer-grained scores than binary answers. Evaluated on MT-Bench, AlpacaEval, WildBench, and Arena-Hard.</p>
+<p><strong>Our implementation:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pipeline</td>
+<td><code>rocketeval</code></td>
+</tr>
+<tr>
+<td>Generator</td>
+<td><code>DirectGenerator</code> with <code>rocketeval/generate.md</code> template</td>
+</tr>
+<tr>
+<td>Input required</td>
+<td><code>input</code> + <code>reference</code></td>
+</tr>
+<tr>
+<td>Temperature</td>
+<td>0.7</td>
+</tr>
+<tr>
+<td>Max items</td>
+<td>10 (min 1)</td>
+</tr>
+<tr>
+<td>Response schema</td>
+<td><code>ChecklistResponse</code> (unweighted)</td>
+</tr>
+<tr>
+<td>Primary metric</td>
+<td><code>normalized_score</code> (logprobs with structured fallback)</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">pipe</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;rocketeval&quot;</span><span class="p">,</span> <span class="n">generator_model</span><span class="o">=</span><span class="s2">&quot;openai/gpt-5-mini&quot;</span><span class="p">,</span> <span class="n">scorer_model</span><span class="o">=</span><span class="s2">&quot;openai/gpt-5-mini&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">result</span> <span class="o">=</span> <span class="n">pipe</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="s2">&quot;Explain photosynthesis.&quot;</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="s2">&quot;...&quot;</span><span class="p">,</span> <span class="n">reference</span><span class="o">=</span><span class="s2">&quot;...&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">normalized_score</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Differences from paper:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Paper feature</th>
+<th>Our implementation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Supervised score predictor (fitted per-query from annotations)</td>
+<td>Not implemented; uses unsupervised arithmetic mean of normalized scores only</td>
+</tr>
+<tr>
+<td>KL-divergence reweighting (<code>α_r</code>) blending supervised + unsupervised scores</td>
+<td>Not implemented (requires annotation data)</td>
+</tr>
+<tr>
+<td>Conversation history as generation context</td>
+<td>Supported via template placeholders but not enforced</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="rlcf-reinforcement-learning-from-checklist-feedback">RLCF (Reinforcement Learning from Checklist Feedback)<a class="headerlink" href="#rlcf-reinforcement-learning-from-checklist-feedback" title="Permanent link">&para;</a></h3>
+<p><strong>Paper:</strong> <a href="https://arxiv.org/abs/2507.18624">arXiv:2507.18624</a></p>
+<p><strong>Original methodology:</strong> RLCF introduces <strong>weighted checklist items</strong> where each question has an importance weight from 0–100:</p>
+<ul>
+<li><strong>100</strong> = critical requirement</li>
+<li><strong>75</strong> = important quality factor</li>
+<li><strong>50</strong> = good response indicator</li>
+<li><strong>25</strong> = preference/style</li>
+<li><strong>&lt; 25</strong> = nice-to-have</li>
+</ul>
+<p>The key insight is that not all criteria are equally important — weighting produces more discriminative evaluation signals, particularly useful for RLHF training. Evaluated on WildChat. Three generation modes are defined:</p>
+<h4 id="rlcf-direct">RLCF Direct<a class="headerlink" href="#rlcf-direct" title="Permanent link">&para;</a></h4>
+<p>Prompts the LLM to write a weighted checklist from the input instruction and reference response.</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pipeline</td>
+<td><code>rlcf_direct</code></td>
+</tr>
+<tr>
+<td>Generator</td>
+<td><code>DirectGenerator</code> with <code>rlcf/direct.md</code> template</td>
+</tr>
+<tr>
+<td>Input required</td>
+<td><code>input</code> + <code>reference</code></td>
+</tr>
+<tr>
+<td>Temperature</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>Max items</td>
+<td>7 (min 1)</td>
+</tr>
+<tr>
+<td>Response schema</td>
+<td><code>WeightedChecklistResponse</code></td>
+</tr>
+<tr>
+<td>Primary metric</td>
+<td><code>weighted_score</code></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">pipe</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;rlcf_direct&quot;</span><span class="p">,</span> <span class="n">generator_model</span><span class="o">=</span><span class="s2">&quot;openai/gpt-5-mini&quot;</span><span class="p">,</span> <span class="n">scorer_model</span><span class="o">=</span><span class="s2">&quot;openai/gpt-5-mini&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">result</span> <span class="o">=</span> <span class="n">pipe</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="s2">&quot;...&quot;</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="s2">&quot;...&quot;</span><span class="p">,</span> <span class="n">reference</span><span class="o">=</span><span class="s2">&quot;...&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">weighted_score</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="rlcf-candidate">RLCF Candidate<a class="headerlink" href="#rlcf-candidate" title="Permanent link">&para;</a></h4>
+<p>First generates varied-quality candidate responses, then derives criteria by contrasting candidates against the reference.</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pipeline</td>
+<td><code>rlcf_candidate</code></td>
+</tr>
+<tr>
+<td>Generator</td>
+<td><code>ContrastiveGenerator</code> with <code>rlcf/candidate_based.md</code> template</td>
+</tr>
+<tr>
+<td>Input required</td>
+<td><code>input</code> + <code>reference</code> + candidates (auto or manual)</td>
+</tr>
+<tr>
+<td>Temperature</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>Max items</td>
+<td>7 (min 1)</td>
+</tr>
+<tr>
+<td>Response schema</td>
+<td><code>WeightedChecklistResponse</code></td>
+</tr>
+<tr>
+<td>Primary metric</td>
+<td><code>weighted_score</code></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Auto-generate candidates</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">pipe</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;rlcf_candidate&quot;</span><span class="p">,</span> <span class="n">generator_model</span><span class="o">=</span><span class="s2">&quot;openai/gpt-5-mini&quot;</span><span class="p">,</span> <span class="n">scorer_model</span><span class="o">=</span><span class="s2">&quot;openai/gpt-5-mini&quot;</span><span class="p">)</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">result</span> <span class="o">=</span> <span class="n">pipe</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="s2">&quot;...&quot;</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="s2">&quot;...&quot;</span><span class="p">,</span> <span class="n">reference</span><span class="o">=</span><span class="s2">&quot;...&quot;</span><span class="p">)</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="c1"># Or pass candidates manually</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="n">result</span> <span class="o">=</span> <span class="n">pipe</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="s2">&quot;...&quot;</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="s2">&quot;...&quot;</span><span class="p">,</span> <span class="n">reference</span><span class="o">=</span><span class="s2">&quot;...&quot;</span><span class="p">,</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>              <span class="n">candidates</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;response A&quot;</span><span class="p">,</span> <span class="s2">&quot;response B&quot;</span><span class="p">])</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="c1"># Or use a separate model for candidate generation</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="n">pipe</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;rlcf_candidate&quot;</span><span class="p">,</span> <span class="n">generator_model</span><span class="o">=</span><span class="s2">&quot;openai/gpt-5-mini&quot;</span><span class="p">,</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>                <span class="n">generator_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;candidate_provider&quot;</span><span class="p">:</span> <span class="s2">&quot;vllm&quot;</span><span class="p">,</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>                                  <span class="s2">&quot;candidate_base_url&quot;</span><span class="p">:</span> <span class="s2">&quot;http://gpu:8000/v1&quot;</span><span class="p">})</span>
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Candidate Generation Strategy</p>
+<p>The original paper generates candidates from different "worker" models to get naturally diverse responses. The <code>ContrastiveGenerator</code> supports this and a convenience fallback:</p>
+<ul>
+<li><strong>Multiple <code>candidate_models</code></strong> (paper-faithful): Each model generates exactly <strong>1 response</strong> at temperature 0.7. Diversity comes from model differences. Use by instantiating <code>ContrastiveGenerator</code> directly and passing it to <code>ChecklistPipeline</code>.</li>
+<li><strong>Single model</strong> (convenience fallback): Generates <code>num_candidates</code> responses (default 4) at <strong>temperature 0.9</strong>. Diversity comes from high-temperature sampling. This is what <code>pipeline()</code> with <code>generator_kwargs={"candidate_provider": ...}</code> uses.</li>
+</ul>
+</div>
+<h4 id="rlcf-candidates-only">RLCF Candidates Only<a class="headerlink" href="#rlcf-candidates-only" title="Permanent link">&para;</a></h4>
+<p>Derives criteria from candidate diversity alone — no reference response needed.</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pipeline</td>
+<td><code>rlcf_candidates_only</code></td>
+</tr>
+<tr>
+<td>Generator</td>
+<td><code>ContrastiveGenerator</code> with <code>rlcf/candidates_only.md</code> template</td>
+</tr>
+<tr>
+<td>Input required</td>
+<td><code>input</code> + candidates (auto or manual)</td>
+</tr>
+<tr>
+<td>Temperature</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>Max items</td>
+<td>7 (min 1)</td>
+</tr>
+<tr>
+<td>Response schema</td>
+<td><code>WeightedChecklistResponse</code></td>
+</tr>
+<tr>
+<td>Primary metric</td>
+<td><code>weighted_score</code></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">pipe</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;rlcf_candidates_only&quot;</span><span class="p">,</span> <span class="n">generator_model</span><span class="o">=</span><span class="s2">&quot;openai/gpt-5-mini&quot;</span><span class="p">,</span> <span class="n">scorer_model</span><span class="o">=</span><span class="s2">&quot;openai/gpt-5-mini&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">result</span> <span class="o">=</span> <span class="n">pipe</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="s2">&quot;...&quot;</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="s2">&quot;...&quot;</span><span class="p">,</span> <span class="n">candidates</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;resp1&quot;</span><span class="p">,</span> <span class="s2">&quot;resp2&quot;</span><span class="p">])</span>
+</code></pre></div>
+<p><strong>Differences from paper (all RLCF pipelines):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Paper feature</th>
+<th>Our implementation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Scoring via 0–100 continuous AI judge scores averaged across samples</td>
+<td>Uses binary YES/NO per item with importance-weighted aggregation</td>
+</tr>
+<tr>
+<td>Separability filtering (top 40% most discriminative pairs)</td>
+<td>Not implemented; all generated items are kept</td>
+</tr>
+<tr>
+<td>Direct Preference Optimization (DPO) training loop</td>
+<td>Out of scope — this library focuses on checklist generation and scoring, not policy training</td>
+</tr>
+<tr>
+<td>Exact verifier programs for discrete checks (e.g., format, length)</td>
+<td>Not implemented; all scoring is LLM-based</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="corpus-level-methods">Corpus-Level Methods<a class="headerlink" href="#corpus-level-methods" title="Permanent link">&para;</a></h2>
+<h3 id="feedback-from-feedback-to-checklists">Feedback (From Feedback to Checklists)<a class="headerlink" href="#feedback-from-feedback-to-checklists" title="Permanent link">&para;</a></h3>
+<p><strong>Paper:</strong> EMNLP 2025 Industry Track, "From Feedback to Checklists"</p>
+<p><strong>Original methodology:</strong> Transforms user/reviewer feedback into evaluation checklists through a 5-stage pipeline: (1) generate candidate questions from feedback batches, (2) merge redundant questions via embeddings, (3) filter by applicability and specificity, (4) validate enforceability via unit testing, (5) select a diverse subset via beam search. Evaluated on clinical note quality. The key insight is that real user feedback captures evaluation criteria that predefined rubrics miss.</p>
+<p><strong>Our implementation:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Registry name</td>
+<td><code>feedback</code></td>
+</tr>
+<tr>
+<td>Generator</td>
+<td><code>InductiveGenerator</code></td>
+</tr>
+<tr>
+<td>Input required</td>
+<td><code>observations</code> (list of strings)</td>
+</tr>
+<tr>
+<td>Primary metric</td>
+<td><code>pass_rate</code></td>
+</tr>
+<tr>
+<td>Built-in refinement</td>
+<td>Deduplicator → Tagger → Selector</td>
+</tr>
+</tbody>
+</table>
+<p>The generator has a built-in refinement pipeline that runs by default:</p>
+<ol>
+<li><strong>Generate</strong> — LLM creates candidate questions from batches of feedback comments</li>
+<li><strong>Deduplicate</strong> — merges similar questions via embedding similarity (threshold 0.85)</li>
+<li><strong>Tag</strong> — filters by applicability and specificity</li>
+<li><strong>Select</strong> — beam search for diverse subset (if more questions than <code>max_questions</code>)</li>
+</ol>
+<p>Each stage can be selectively skipped. See <a href="../generators/#inductivegenerator">InductiveGenerator usage</a> for code examples.</p>
+<div class="admonition info">
+<p class="admonition-title">Unit Testing Not Included by Default</p>
+<p>The original paper includes enforceability validation (stage 4) in its pipeline. Our <code>InductiveGenerator</code> does <strong>not</strong> run the <code>UnitTester</code> by default because it requires pre-existing sample scores. You can add it as a standalone <a href="../refiners/">refiner</a> after an initial scoring round.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Selection Simplification</p>
+<p>The original paper's selection step optimizes on <strong>assignment matrices</strong> — maximizing coverage of input feedback by ensuring each comment maps to at least one selected question (via <code>source_feedback_indices</code>). Our Selector simplifies this to embedding diversity as a proxy for coverage.</p>
+</div>
+<p><strong>Differences from paper:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Paper feature</th>
+<th>Our implementation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Enforceability unit testing (stage 4) in the default pipeline</td>
+<td>Available as standalone <code>UnitTester</code> refiner, but not run by default (requires pre-existing sample scores)</td>
+</tr>
+<tr>
+<td>Selection optimizes assignment matrices for feedback coverage</td>
+<td>Simplified to embedding diversity via beam search; <code>source_feedback_indices</code> are tracked but not used in selection</td>
+</tr>
+<tr>
+<td>Domain-specific (clinical note sections)</td>
+<td>Generalized to any domain via the <code>domain</code> parameter</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="checkeval">CheckEval<a class="headerlink" href="#checkeval" title="Permanent link">&para;</a></h3>
+<p><strong>Paper:</strong> <a href="https://arxiv.org/abs/2403.18771">arXiv:2403.18771</a></p>
+<p><strong>Original methodology:</strong> Generates checklists from human-written evaluation dimension definitions through: seed question generation → augmentation (elaboration for granularity, diversification for alternative framings) → filtering (alignment check, dimension consistency, redundancy removal). Evaluated on SummEval and Topical-Chat. The key insight is that structured dimensions produce more systematic and complete evaluation criteria.</p>
+<p><strong>Our implementation:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Registry name</td>
+<td><code>checkeval</code></td>
+</tr>
+<tr>
+<td>Generator</td>
+<td><code>DeductiveGenerator</code></td>
+</tr>
+<tr>
+<td>Input required</td>
+<td><code>dimensions</code> (list of <code>DeductiveInput</code>)</td>
+</tr>
+<tr>
+<td>Primary metric</td>
+<td><code>pass_rate</code></td>
+</tr>
+<tr>
+<td>Built-in refinement</td>
+<td>Augmentation + optional filtering (with dedup)</td>
+</tr>
+</tbody>
+</table>
+<p>Three augmentation modes control question volume:</p>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Questions per Sub-Dimension</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>seed</code></td>
+<td>2</td>
+<td>Minimal seed questions</td>
+</tr>
+<tr>
+<td><code>elaboration</code></td>
+<td>5</td>
+<td>Detailed, granular questions</td>
+</tr>
+<tr>
+<td><code>diversification</code></td>
+<td>4</td>
+<td>Alternative framings of criteria</td>
+</tr>
+</tbody>
+</table>
+<p>Optional filtering (<code>apply_filtering=True</code>) runs: alignment check → dimension consistency check → deduplication.</p>
+<p>See <a href="../generators/#deductivegenerator">DeductiveGenerator usage</a> for code examples.</p>
+<p><strong>Differences from paper:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Paper feature</th>
+<th>Our implementation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Diversification and elaboration run <strong>independently in parallel</strong> from the same seeds, then merged before filtering</td>
+<td>Use <code>augmentation_mode="combined"</code> to run both elaboration and diversification from seeds (paper-faithful). Individual modes (<code>"seed"</code>, <code>"elaboration"</code>, <code>"diversification"</code>) are also available.</td>
+</tr>
+<tr>
+<td>Seed questions written by human experts</td>
+<td>Seed questions are LLM-generated (from dimension + sub-dimension definitions)</td>
+</tr>
+<tr>
+<td>Supervised weighting via linear regression on annotation data</td>
+<td>Not implemented; all questions are equally weighted (uniform <code>pass_rate</code>)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="interacteval">InteractEval<a class="headerlink" href="#interacteval" title="Permanent link">&para;</a></h3>
+<p><strong>Paper:</strong> <a href="https://arxiv.org/abs/2409.07355">arXiv:2409.07355</a></p>
+<p><strong>Original methodology:</strong> Collects think-aloud data from both human evaluators and LLMs, then extracts evaluation criteria through a 5-stage pipeline: (1) component extraction (recurring themes), (2) attribute clustering under components, (3) key question generation (1 per component), (4) sub-question generation (2–3 per component), (5) validation and refinement. Pass rate is scaled to a 1–5 dimension score. Evaluated on SummEval and ELLIPSE. The key insight is that combining human and LLM evaluation perspectives produces more comprehensive criteria.</p>
+<p><strong>Our implementation:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Registry name</td>
+<td><code>interacteval</code></td>
+</tr>
+<tr>
+<td>Generator</td>
+<td><code>InteractiveGenerator</code></td>
+</tr>
+<tr>
+<td>Input required</td>
+<td><code>inputs</code> (list of <code>InteractiveInput</code>)</td>
+</tr>
+<tr>
+<td>Primary metric</td>
+<td><code>pass_rate</code></td>
+</tr>
+<tr>
+<td>Built-in refinement</td>
+<td>5-stage pipeline with validation</td>
+</tr>
+</tbody>
+</table>
+<p>The 5-stage pipeline:</p>
+<ol>
+<li><strong>Component extraction</strong> — identifies up to <code>max_components</code> (default 5) recurring themes</li>
+<li><strong>Attribute clustering</strong> — groups attributes under each component</li>
+<li><strong>Key question generation</strong> — 1 yes/no question per component</li>
+<li><strong>Sub-question generation</strong> — 2–3 sub-questions per component</li>
+<li><strong>Validation</strong> — refines and validates the final question set</li>
+</ol>
+<p>See <a href="../generators/#interactivegenerator">InteractiveGenerator usage</a> for code examples.</p>
+<p>InteractEval-style 1–5 scoring is available via <code>result.score.scaled_score_1_5</code>.</p>
+<p><strong>Differences from paper:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Paper feature</th>
+<th>Our implementation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Think-aloud collection protocol (4 humans + 4 LLMs with rubrics and sample texts)</td>
+<td>Think-aloud data is provided as input (<code>InteractiveInput</code>); the collection protocol is external to the library</td>
+</tr>
+<tr>
+<td>Validation uses 7 explicit criteria (yes/no answerable, dimension concepts, minimizes subjectivity, semantically distinct, positive framing, dimension-relevant, actionable)</td>
+<td>Validation is handled by a single LLM call (stage 5) that checks these criteria holistically rather than as separate classification passes</td>
+</tr>
+<tr>
+<td>Deduplication via LLM judgment in validation step</td>
+<td>LLM-only dedup within the validation prompt; does not use embedding-based <code>Deduplicator</code> refiner (available as standalone but not wired in)</td>
+</tr>
+<tr>
+<td>Five think-aloud conditions tested (single-LLM, single-human, multi-LLM, multi-human, combined)</td>
+<td>All inputs are merged; the <code>source</code> field on <code>InteractiveInput</code> tracks provenance but doesn't affect the generation pipeline</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="comparison-table">Comparison Table<a class="headerlink" href="#comparison-table" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Level</th>
+<th>Input Required</th>
+<th>Reference?</th>
+<th>Candidates?</th>
+<th>Primary Metric</th>
+<th>Built-in Refinement?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TICK</td>
+<td>Instance</td>
+<td><code>input</code></td>
+<td>No</td>
+<td>No</td>
+<td><code>pass_rate</code></td>
+<td>No</td>
+</tr>
+<tr>
+<td>RocketEval</td>
+<td>Instance</td>
+<td><code>input</code></td>
+<td>Yes</td>
+<td>No</td>
+<td><code>normalized_score</code></td>
+<td>No</td>
+</tr>
+<tr>
+<td>RLCF Direct</td>
+<td>Instance</td>
+<td><code>input</code></td>
+<td>Yes</td>
+<td>No</td>
+<td><code>weighted_score</code></td>
+<td>No</td>
+</tr>
+<tr>
+<td>RLCF Candidate</td>
+<td>Instance</td>
+<td><code>input</code></td>
+<td>Yes</td>
+<td>Yes (auto)</td>
+<td><code>weighted_score</code></td>
+<td>No</td>
+</tr>
+<tr>
+<td>RLCF Candidates Only</td>
+<td>Instance</td>
+<td><code>input</code></td>
+<td>No</td>
+<td>Yes (auto)</td>
+<td><code>weighted_score</code></td>
+<td>No</td>
+</tr>
+<tr>
+<td>Feedback</td>
+<td>Corpus</td>
+<td><code>observations</code> list</td>
+<td>No</td>
+<td>No</td>
+<td><code>pass_rate</code></td>
+<td>Yes (dedup, tag, select)</td>
+</tr>
+<tr>
+<td>CheckEval</td>
+<td>Corpus</td>
+<td><code>dimensions</code></td>
+<td>No</td>
+<td>No</td>
+<td><code>pass_rate</code></td>
+<td>Yes (augment, filter, dedup)</td>
+</tr>
+<tr>
+<td>InteractEval</td>
+<td>Corpus</td>
+<td><code>think-aloud</code></td>
+<td>No</td>
+<td>No</td>
+<td><code>pass_rate</code> (or 1–5)</td>
+<td>Yes (5-stage pipeline)</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
