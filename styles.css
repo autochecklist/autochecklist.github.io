@@ -141,14 +141,30 @@ section {
   justify-content: space-between;
 }
 
-.nav-logo {
-  height: 28px;
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
   opacity: 0.9;
   transition: opacity 0.2s;
 }
 
-.nav-logo:hover {
+.nav-brand:hover {
   opacity: 1;
+}
+
+.nav-brand-icon {
+  height: 26px;
+  width: 26px;
+}
+
+.nav-brand-text {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: -0.02em;
 }
 
 .nav-links {
@@ -179,9 +195,24 @@ section {
 }
 
 .hero-logo {
-  max-width: 420px;
-  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
   margin-bottom: 1.75rem;
+}
+
+.hero-logo-icon {
+  height: 72px;
+  width: 72px;
+}
+
+.hero-logo-text {
+  font-family: var(--font-body);
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: -0.03em;
 }
 
 .hero-tagline {
@@ -536,8 +567,13 @@ section {
     padding: 3.5rem 0 3rem;
   }
 
-  .hero-logo {
-    max-width: 300px;
+  .hero-logo-icon {
+    height: 56px;
+    width: 56px;
+  }
+
+  .hero-logo-text {
+    font-size: 2.25rem;
   }
 
   .hero-tagline {
@@ -562,8 +598,13 @@ section {
 }
 
 @media (max-width: 480px) {
-  .hero-logo {
-    max-width: 240px;
+  .hero-logo-icon {
+    height: 44px;
+    width: 44px;
+  }
+
+  .hero-logo-text {
+    font-size: 1.75rem;
   }
 
   .hero-tagline {
