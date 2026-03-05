@@ -53,6 +53,16 @@
   margin-bottom: 1.5rem;
 }
 
+.example-inputs-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.example-inputs-row .example-input {
+  flex: 1;
+  min-width: 0;
+}
+
 .example-input {
   background: var(--surface-elevated);
   border-radius: 8px;
@@ -78,7 +88,21 @@
   white-space: pre-wrap;
 }
 
-/* ── Method cards row ── */
+/* ── Method cards groups ── */
+
+.method-cards-section {
+  margin-bottom: 1.5rem;
+}
+
+.method-cards-section-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+}
 
 .method-cards {
   display: flex;
@@ -285,6 +309,10 @@
 /* ── Responsive ── */
 
 @media (max-width: 768px) {
+  .example-inputs-row {
+    flex-direction: column;
+  }
+
   .method-cards {
     flex-direction: column;
   }
