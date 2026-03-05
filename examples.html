@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Examples — AutoChecklist</title>
+  <meta name="description" content="See how different evaluation pipelines generate and score checklists on real benchmark tasks.">
+  <link rel="icon" type="image/png" href="assets/ac_bg_dark.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="examples.css">
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <div class="container">
+      <a href="/" class="nav-brand">
+        <img src="assets/ac_dark.png" alt="" class="nav-brand-icon">
+        <span class="nav-brand-text">AutoChecklist</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="examples.html" style="color: var(--accent);">Examples</a></li>
+        <li><a href="docs/">Docs</a></li>
+        <li><a href="/">Paper</a></li>
+        <li><a href="https://github.com/ChicagoHAI/AutoChecklist">GitHub</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <p class="section-label">Pipeline Comparison Examples</p>
+      <p class="hero-description">See how different evaluation pipelines generate and score checklists on the same benchmark tasks.</p>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- Examples Content -->
+  <section class="examples-content">
+    <div class="container">
+      <!-- Tab bar (JS populates) -->
+      <div class="example-tabs" id="example-tabs"></div>
+
+      <!-- Example display -->
+      <div id="example-display">
+        <div class="example-inputs" id="example-inputs"></div>
+        <div class="method-cards" id="method-cards"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <span class="footer-copy">&copy; <span id="year"></span> <a href="https://chicagohai.github.io/">ChicagoHAI</a> &middot; University of Chicago</span>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    let examplesData = null;
+    let currentExample = 0;
+
+    const PIPELINE_ORDER = ['tick', 'rocketeval', 'rlcf_candidates_only', 'rlcf_candidate'];
+
+    const TYPE_LABELS = {
+      tick: 'Direct',
+      rocketeval: 'Direct + Ref',
+      rlcf_candidates_only: 'Contrastive',
+      rlcf_candidate: 'Contrastive + Ref'
+    };
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    function getConfidenceLabel(confidence) {
+      if (confidence > 0.8) return { label: 'High confidence', color: 'var(--success)' };
+      if (confidence > 0.6) return { label: 'Moderate confidence', color: 'var(--success)' };
+      if (confidence > 0.4) return { label: 'Unsure', color: 'var(--text-muted)' };
+      if (confidence > 0.2) return { label: 'Moderate confidence', color: 'var(--error)' };
+      return { label: 'High confidence', color: 'var(--error)' };
+    }
+
+    async function init() {
+      const resp = await fetch('examples-data.json');
+      examplesData = await resp.json();
+      renderTabs();
+      renderExample(0);
+    }
+
+    function renderTabs() {
+      const tabsEl = document.getElementById('example-tabs');
+      tabsEl.textContent = '';
+      examplesData.examples.forEach(function(ex, i) {
+        const btn = document.createElement('button');
+        btn.className = 'example-tab' + (i === 0 ? ' active' : '');
+        btn.textContent = ex.label;
+        btn.addEventListener('click', function() { selectExample(i); });
+        tabsEl.appendChild(btn);
+      });
+    }
+
+    function selectExample(index) {
+      currentExample = index;
+      const tabs = document.querySelectorAll('.example-tab');
+      tabs.forEach(function(tab, i) {
+        tab.classList.toggle('active', i === index);
+      });
+      renderExample(index);
+    }
+
+    function renderExample(index) {
+      const ex = examplesData.examples[index];
+      renderInputs(ex);
+      renderMethodCards(ex);
+    }
+
+    function renderInputs(ex) {
+      const container = document.getElementById('example-inputs');
+      container.textContent = '';
+
+      var blocks = [
+        { label: 'Input', text: ex.input },
+        { label: 'Target', text: ex.target }
+      ];
+      if (ex.reference) {
+        blocks.push({ label: 'Reference', text: ex.reference });
+      }
+
+      blocks.forEach(function(block) {
+        var wrapper = document.createElement('div');
+        wrapper.className = 'example-input';
+
+        var label = document.createElement('span');
+        label.className = 'example-input-label';
+        label.textContent = block.label;
+
+        var text = document.createElement('div');
+        text.className = 'example-input-text';
+        text.textContent = block.text;
+
+        wrapper.appendChild(label);
+        wrapper.appendChild(text);
+        container.appendChild(wrapper);
+      });
+    }
+
+    function renderMethodCards(ex) {
+      var container = document.getElementById('method-cards');
+      container.textContent = '';
+
+      PIPELINE_ORDER.forEach(function(key) {
+        var pipeline = ex.pipelines[key];
+        if (!pipeline) return;
+        var card = renderCard(pipeline, key);
+        container.appendChild(card);
+      });
+    }
+
+    function renderCard(pipeline, pipelineKey) {
+      var card = document.createElement('div');
+      card.className = 'method-card';
+
+      // Header
+      var header = document.createElement('div');
+      header.className = 'method-card-header';
+
+      var headerTop = document.createElement('div');
+      headerTop.className = 'method-card-header-top';
+
+      var typeLabel = document.createElement('span');
+      typeLabel.className = 'method-card-type';
+      typeLabel.textContent = TYPE_LABELS[pipelineKey] || pipeline.generator_type;
+
+      var badge = document.createElement('span');
+      badge.className = 'method-card-badge badge-success';
+      badge.textContent = 'Complete';
+
+      headerTop.appendChild(typeLabel);
+      headerTop.appendChild(badge);
+
+      var name = document.createElement('h3');
+      name.className = 'method-card-name';
+      name.textContent = pipeline.name;
+
+      var desc = document.createElement('p');
+      desc.className = 'method-card-description';
+      desc.textContent = pipeline.description;
+
+      header.appendChild(headerTop);
+      header.appendChild(name);
+      header.appendChild(desc);
+
+      // Body
+      var body = document.createElement('div');
+      body.className = 'method-card-body';
+
+      // Score
+      var score = pipeline.score;
+      var scoreBox = document.createElement('div');
+      scoreBox.className = 'method-card-score';
+
+      var scoreLabel = document.createElement('span');
+      scoreLabel.className = 'method-card-score-label';
+      scoreLabel.textContent = 'Score';
+
+      var scoreRight = document.createElement('div');
+      scoreRight.className = 'method-card-score-right';
+
+      var scoreValue = document.createElement('span');
+      scoreValue.className = 'method-card-score-value';
+      scoreValue.textContent = score.passed + '/' + score.total;
+
+      scoreRight.appendChild(scoreValue);
+
+      if (score.primary_metric !== 'pass') {
+        var scoreMetric = document.createElement('span');
+        scoreMetric.className = 'method-card-score-metric';
+        scoreMetric.textContent = score.primary_metric + ': ' + score.percentage.toFixed(1) + '%';
+        scoreRight.appendChild(scoreMetric);
+      }
+
+      scoreBox.appendChild(scoreLabel);
+      scoreBox.appendChild(scoreRight);
+      body.appendChild(scoreBox);
+
+      // Divider
+      var divider = document.createElement('hr');
+      divider.className = 'method-card-divider';
+      body.appendChild(divider);
+
+      // Checklist header
+      var clHeader = document.createElement('div');
+      clHeader.className = 'checklist-header';
+      clHeader.textContent = 'Checklist (' + pipeline.items.length + ' items)';
+      body.appendChild(clHeader);
+
+      // Checklist items
+      var ul = document.createElement('ul');
+      ul.className = 'checklist-items';
+
+      pipeline.items.forEach(function(item) {
+        ul.appendChild(renderChecklistItem(item, pipelineKey));
+      });
+
+      body.appendChild(ul);
+
+      card.appendChild(header);
+      card.appendChild(body);
+      return card;
+    }
+
+    function renderChecklistItem(item, pipelineKey) {
+      var li = document.createElement('li');
+      li.className = 'checklist-item';
+
+      // Indicator
+      var indicator = document.createElement('span');
+      var status = item.passed === true ? 'pass' : (item.passed === false ? 'fail' : 'neutral');
+      indicator.className = 'checklist-indicator ' + status;
+      if (status === 'pass') {
+        indicator.textContent = '\u2713';
+      } else if (status === 'fail') {
+        indicator.textContent = '\u2717';
+      } else {
+        indicator.textContent = '\u00A0';
+      }
+
+      // Content
+      var content = document.createElement('div');
+      content.className = 'checklist-item-content';
+
+      var question = document.createElement('span');
+      question.className = 'checklist-question';
+      question.textContent = item.question;
+      content.appendChild(question);
+
+      if (item.reasoning) {
+        var reasoning = document.createElement('div');
+        reasoning.className = 'checklist-reasoning';
+        reasoning.textContent = item.reasoning;
+        content.appendChild(reasoning);
+      }
+
+      var isRlcf = pipelineKey === 'rlcf_candidates_only' || pipelineKey === 'rlcf_candidate';
+      if (isRlcf && item.weight !== 100.0) {
+        var weight = document.createElement('span');
+        weight.className = 'checklist-weight';
+        weight.textContent = 'w=' + item.weight;
+        content.appendChild(weight);
+      }
+
+      if (item.confidence !== null && item.confidence !== undefined) {
+        var conf = getConfidenceLabel(item.confidence);
+        var confSpan = document.createElement('span');
+        confSpan.className = 'checklist-confidence';
+        confSpan.style.color = conf.color;
+        confSpan.textContent = conf.label;
+        content.appendChild(confSpan);
+      }
+
+      li.appendChild(indicator);
+      li.appendChild(content);
+      return li;
+    }
+
+    init();
+  </script>
+</body>
+</html>
