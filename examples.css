@@ -46,19 +46,28 @@
 
 /* ── Input display ── */
 
-.example-inputs {
+.example-block {
+  background: var(--surface-elevated);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  margin-bottom: 1.5rem;
 }
 
-.example-inputs-row {
+.example-block .example-input {
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+}
+
+.example-block-row {
   display: flex;
-  gap: 1rem;
+  gap: 1.25rem;
 }
 
-.example-inputs-row .example-input {
+.example-block-row > .example-input {
   flex: 1;
   min-width: 0;
 }
@@ -82,26 +91,45 @@
 
 .example-input-text {
   font-family: var(--font-body);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   line-height: 1.6;
   color: var(--text);
   white-space: pre-wrap;
+  word-break: break-word;
+  max-height: 12rem;
+  overflow-y: auto;
 }
 
-/* ── Method cards groups ── */
+/* ── Method cards ── */
 
-.method-cards-section {
-  margin-bottom: 1.5rem;
+.method-cards-labels {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
 }
 
-.method-cards-section-label {
+.method-cards-label-group {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.method-cards-label-text {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--text-muted);
   font-weight: 500;
-  margin-bottom: 0.75rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.method-cards-label-line {
+  flex: 1;
+  height: 1px;
+  background: var(--border-strong);
 }
 
 .method-cards {
@@ -309,8 +337,13 @@
 /* ── Responsive ── */
 
 @media (max-width: 768px) {
-  .example-inputs-row {
+  .example-block-row {
     flex-direction: column;
+  }
+
+  .method-cards-labels {
+    flex-direction: column;
+    gap: 0.25rem;
   }
 
   .method-cards {

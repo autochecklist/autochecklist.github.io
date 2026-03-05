@@ -48,7 +48,7 @@
 
       <!-- Example display -->
       <div id="example-display">
-        <div class="example-inputs" id="example-inputs"></div>
+        <div class="example-block" id="example-block"></div>
         <div id="method-cards-container"></div>
       </div>
     </div>
@@ -138,64 +138,55 @@
     }
 
     function renderInputs(ex) {
-      var container = document.getElementById('example-inputs');
-      container.textContent = '';
+      var block = document.getElementById('example-block');
+      block.textContent = '';
 
-      // Input on its own full-width line
-      container.appendChild(makeInputBlock('Input', ex.input));
+      // Input full-width on top
+      block.appendChild(makeInputBlock('Input', ex.input));
 
-      // Target and Reference side by side if reference exists
+      // Target and Reference side by side below
+      var row = document.createElement('div');
+      row.className = 'example-block-row';
+      row.appendChild(makeInputBlock('Target', ex.target));
       if (ex.reference) {
-        var row = document.createElement('div');
-        row.className = 'example-inputs-row';
-        row.appendChild(makeInputBlock('Target', ex.target));
         row.appendChild(makeInputBlock('Reference', ex.reference));
-        container.appendChild(row);
-      } else {
-        container.appendChild(makeInputBlock('Target', ex.target));
       }
+      block.appendChild(row);
     }
 
-    var REF_FREE = ['tick', 'rlcf_candidates_only'];
-    var USES_REF = ['rocketeval', 'rlcf_candidate'];
+    function makeLabelGroup(text) {
+      var group = document.createElement('div');
+      group.className = 'method-cards-label-group';
+      var label = document.createElement('span');
+      label.className = 'method-cards-label-text';
+      label.textContent = text;
+      var line = document.createElement('div');
+      line.className = 'method-cards-label-line';
+      group.appendChild(label);
+      group.appendChild(line);
+      return group;
+    }
 
     function renderMethodCards(ex) {
       var container = document.getElementById('method-cards-container');
       container.textContent = '';
 
-      // Group 1: Reference-free pipelines
-      var section1 = document.createElement('div');
-      section1.className = 'method-cards-section';
-      var label1 = document.createElement('div');
-      label1.className = 'method-cards-section-label';
-      label1.textContent = 'Reference-Free';
-      section1.appendChild(label1);
-      var row1 = document.createElement('div');
-      row1.className = 'method-cards';
-      REF_FREE.forEach(function(key) {
-        var pipeline = ex.pipelines[key];
-        if (!pipeline) return;
-        row1.appendChild(renderCard(pipeline, key));
-      });
-      section1.appendChild(row1);
-      container.appendChild(section1);
+      // Label row: "Reference-Free ───" | "Uses Reference ───"
+      var labels = document.createElement('div');
+      labels.className = 'method-cards-labels';
+      labels.appendChild(makeLabelGroup('Reference-Free'));
+      labels.appendChild(makeLabelGroup('Uses Reference'));
+      container.appendChild(labels);
 
-      // Group 2: Using Reference pipelines
-      var section2 = document.createElement('div');
-      section2.className = 'method-cards-section';
-      var label2 = document.createElement('div');
-      label2.className = 'method-cards-section-label';
-      label2.textContent = 'Using Reference';
-      section2.appendChild(label2);
-      var row2 = document.createElement('div');
-      row2.className = 'method-cards';
-      USES_REF.forEach(function(key) {
+      // Single horizontal row of all 4 cards
+      var row = document.createElement('div');
+      row.className = 'method-cards';
+      ['tick', 'rlcf_candidates_only', 'rocketeval', 'rlcf_candidate'].forEach(function(key) {
         var pipeline = ex.pipelines[key];
         if (!pipeline) return;
-        row2.appendChild(renderCard(pipeline, key));
+        row.appendChild(renderCard(pipeline, key));
       });
-      section2.appendChild(row2);
-      container.appendChild(section2);
+      container.appendChild(row);
     }
 
     function renderCard(pipeline, pipelineKey) {
