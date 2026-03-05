@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AutoChecklist — Composable LLM Evaluation Pipelines</title>
-  <meta name="description" content="An open-source library that unifies LLM-based checklist evaluation into composable, reproducible pipelines.">
+  <title>AutoChecklist</title>
+  <meta name="description" content="An open-source library that unifies LLM-based checklist evaluation into composable pipelines.">
   <link rel="icon" type="image/png" href="assets/ac_bg_dark.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,7 +22,7 @@
       </a>
       <ul class="nav-links">
         <li><a href="docs/">Docs</a></li>
-        <li><a href="docs/getting-started/quickstart/">Quickstart</a></li>
+        <li><a href="/">Paper</a></li>
         <li><a href="https://github.com/ChicagoHAI/AutoChecklist">GitHub</a></li>
       </ul>
     </div>
@@ -31,50 +31,55 @@
   <!-- Hero -->
   <section class="hero">
     <div class="container">
-      <div class="hero-badge">
-        <span class="hero-badge-dot"></span>
-        Open Source
-      </div>
-      <div class="hero-logo">
-        <img src="assets/ac_dark.png" alt="" class="hero-logo-icon">
-        <span class="hero-logo-text">AutoChecklist</span>
-      </div>
-      <h1 class="hero-tagline">Composable checklist evaluation for LLMs</h1>
-      <p class="hero-description">
-        Generate evaluation checklists with five distinct strategies —
-        Direct, Contrastive, Inductive, Deductive, and Interactive —
-        then score and refine them through composable pipelines.
-        Built-in methods from published research. Full control over every prompt.
-      </p>
-      <div class="hero-actions">
-        <a href="docs/getting-started/quickstart/" class="btn btn-primary">Get Started</a>
+      <h1 class="hero-tagline">Generate &rarr; Refine &rarr; Score</h1>
+      <p class="hero-description">A library to support LLM-based generation of checklist criteria for evaluation. Available as a package, CLI, or local UI.</p>
+      <!-- <div class="hero-actions">
+        <a href="docs/getting-started/installation/" class="btn btn-primary">Get Started</a>
         <a href="https://github.com/ChicagoHAI/AutoChecklist" class="btn btn-outline">
           <svg class="btn-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
           GitHub
         </a>
+      </div> -->
+    <!-- </div>
+  </section>
+
+  <hr class="divider">
+
+  <section class="demo">
+    <div class="container"> -->
+      <div class="section-header section-header--center">
+        <!-- <p class="section-label">Demo</p> -->
+        <!-- <h2 class="section-title">See it in action</h2> -->
+      </div>
+      <div class="demo-slot">
+        <span class="demo-slot-icon">&#9654;</span>
+        <span class="demo-slot-text">Demo video coming soon</span>
       </div>
     </div>
   </section>
 
   <hr class="divider">
 
-  <!-- Demo & Examples Placeholder -->
-  <section class="demo">
+  
+
+
+  <!-- Architecture -->
+  <section class="architecture">
     <div class="container">
       <div class="section-header section-header--center">
-        <p class="section-label">Demo &amp; Examples</p>
-        <h2 class="section-title">See it in action</h2>
+        <p class="section-label">Specific or General Criteria</p>
+        <!-- <h2 class="section-title">Specific or General Criteria</h2> -->
+        <p class="section-subtitle">
+          Generate one checklist per input for fine-grained evaluation,
+          or a single shared checklist across your entire dataset, with five generation strategies.
+        </p>
       </div>
-      <div class="placeholders-grid">
-        <div class="demo-slot">
-          <span class="demo-slot-icon">&#9654;</span>
-          <span class="demo-slot-text">Demo video coming soon</span>
-        </div>
-        <div class="demo-slot">
-          <span class="demo-slot-icon">&#9776;</span>
-          <span class="demo-slot-text">Interactive examples coming soon</span>
-        </div>
-      </div>
+      <figure class="architecture-figure">
+        <img src="assets/instance-vs-corpus.png" alt="Instance-level vs corpus-level checklist generation" class="architecture-img">
+        <!-- <figcaption class="architecture-caption">
+          Instance-level: one checklist per input. Corpus-level: one checklist for all inputs.
+        </figcaption> -->
+      </figure>
     </div>
   </section>
 
@@ -84,14 +89,14 @@
   <section class="quickstart">
     <div class="container">
       <div class="section-header section-header--center">
-        <p class="section-label">Quickstart</p>
-        <h2 class="section-title">Up and running in minutes</h2>
+        <p class="section-label">Quickstart & Examples</p>
+        <!-- <h2 class="section-title">Up and running in minutes</h2> -->
       </div>
       <div class="quickstart-content">
         <div class="code-block">
-<code><span class="code-prompt">$ </span>pip install autochecklist</code>
+<code><span class="code-prompt">$ </span>uv pip install autochecklist</code>
         </div>
-        <div class="code-block">
+        <!-- <div class="code-block">
 <code><span class="code-keyword">from</span> autochecklist <span class="code-keyword">import</span> DirectGenerator, ChecklistScorer
 
 <span class="code-comment"># Generate a checklist for your evaluation task</span>
@@ -104,61 +109,40 @@ checklist = generator.<span class="code-function">generate</span>(
 <span class="code-comment"># Score a response against the checklist</span>
 scorer = <span class="code-function">ChecklistScorer</span>()
 result = scorer.<span class="code-function">score</span>(checklist=checklist, response=<span class="code-string">"The summary text..."</span>)</code>
-        </div>
-        <a href="docs/getting-started/quickstart/" class="quickstart-link">
-          See full quickstart guide &#8594;
+        </div>  -->
+        <a href="docs/getting-started/installation/" class="quickstart-link">
+          See full installation guide &#8594;
         </a>
+      </div>
+    </div>
+  <!-- </section>
+
+ 
+  <section class="examples"> -->
+    <div class="container">
+      <div class="section-header section-header--center">
+        <!-- <p class="section-label">Examples</p> -->
+        <!-- <h2 class="section-title">Inputs and generated checklists</h2> -->
+      </div>
+      <div class="demo-slot">
+        <span class="demo-slot-icon">&#9776;</span>
+        <span class="demo-slot-text">Examples coming soon</span>
       </div>
     </div>
   </section>
 
   <hr class="divider">
 
-  <!-- Architecture -->
-  <section class="architecture">
-    <div class="container">
-      <div class="section-header section-header--center">
-        <p class="section-label">Checklist Generation</p>
-        <h2 class="section-title">Instance-level and corpus-level strategies</h2>
-        <p class="section-subtitle">
-          Generate one checklist per input for fine-grained evaluation,
-          or a single shared checklist across your entire dataset.
-          Five generator strategies — composable with scoring and refinement pipelines.
-        </p>
-      </div>
-      <figure class="architecture-figure">
-        <img src="assets/instance-vs-corpus.png" alt="Instance-level vs corpus-level checklist generation" class="architecture-img">
-        <figcaption class="architecture-caption">
-          Instance-level: one checklist per input. Corpus-level: one checklist for all inputs.
-        </figcaption>
-      </figure>
-      <div class="architecture-tags">
-        <span class="tag">Direct</span>
-        <span class="tag">Contrastive</span>
-        <span class="tag">Inductive</span>
-        <span class="tag">Deductive</span>
-        <span class="tag">Interactive</span>
-        <span class="tag">TICK</span>
-        <span class="tag">RocketEval</span>
-        <span class="tag">RLCF</span>
-        <span class="tag">CheckEval</span>
-        <span class="tag">InteractEval</span>
-      </div>
-    </div>
-  </section>
-
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
-      <ul class="footer-links">
-        <li><a href="docs/">Documentation</a></li>
-        <li><a href="docs/getting-started/quickstart/">Quickstart</a></li>
-        <li><a href="https://github.com/ChicagoHAI/AutoChecklist">GitHub</a></li>
+      <!-- <ul class="footer-links">
         <li><a href="https://chicagohai.github.io/">ChicagoHAI</a></li>
-      </ul>
-      <span class="footer-copy">ChicagoHAI &middot; University of Chicago</span>
+      </ul> -->
+      <span class="footer-copy">&copy; <span id="year"></span> <a href="https://chicagohai.github.io/">ChicagoHAI</a> &middot; University of Chicago</span>
     </div>
   </footer>
 
+<script>document.getElementById('year').textContent=new Date().getFullYear();</script>
 </body>
 </html>
