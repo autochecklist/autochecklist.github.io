@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AutoChecklist — Composable LLM Evaluation Pipelines</title>
   <meta name="description" content="An open-source library that unifies LLM-based checklist evaluation into composable, reproducible pipelines.">
-  <link rel="icon" type="image/png" href="assets/ac_dark.png">
+  <link rel="icon" type="image/png" href="assets/ac_bg_dark.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -41,9 +41,10 @@
       </div>
       <h1 class="hero-tagline">Composable checklist evaluation for LLMs</h1>
       <p class="hero-description">
-        Generate, score, and refine evaluation checklists with a unified pipeline.
-        Five generator strategies, built-in methods from published research, and full
-        control over every prompt.
+        Generate evaluation checklists with five distinct strategies —
+        Direct, Contrastive, Inductive, Deductive, and Interactive —
+        then score and refine them through composable pipelines.
+        Built-in methods from published research. Full control over every prompt.
       </p>
       <div class="hero-actions">
         <a href="docs/getting-started/quickstart/" class="btn btn-primary">Get Started</a>
@@ -57,70 +58,21 @@
 
   <hr class="divider">
 
-  <!-- Features -->
-  <section class="features">
+  <!-- Demo & Examples Placeholder -->
+  <section class="demo">
     <div class="container">
       <div class="section-header section-header--center">
-        <p class="section-label">Why AutoChecklist</p>
-        <h2 class="section-title">Everything you need for checklist evaluation</h2>
-        <p class="section-subtitle">
-          A unified framework that covers the full evaluation lifecycle — from checklist generation to scoring and refinement.
-        </p>
+        <p class="section-label">Demo &amp; Examples</p>
+        <h2 class="section-title">See it in action</h2>
       </div>
-      <div class="features-grid">
-        <div class="card">
-          <span class="card-icon">&#9881;</span>
-          <h3 class="card-title">5 Generator Strategies</h3>
-          <p class="card-description">
-            Organize evaluation by reasoning style. Each generator implements a distinct approach to building checklists — from direct prompting to interactive refinement.
-          </p>
-          <div class="card-tags">
-            <span class="tag">Direct</span>
-            <span class="tag">Contrastive</span>
-            <span class="tag">Inductive</span>
-            <span class="tag">Deductive</span>
-            <span class="tag">Interactive</span>
-          </div>
+      <div class="placeholders-grid">
+        <div class="demo-slot">
+          <span class="demo-slot-icon">&#9654;</span>
+          <span class="demo-slot-text">Demo video coming soon</span>
         </div>
-        <div class="card">
-          <span class="card-icon">&#9879;</span>
-          <h3 class="card-title">Composable Pipelines</h3>
-          <p class="card-description">
-            Mix and match generators, scorers, and refiners into custom evaluation workflows. Register your own methods or use the built-in implementations.
-          </p>
-          <div class="card-tags">
-            <span class="tag">Generator</span>
-            <span class="tag">Scorer</span>
-            <span class="tag">Refiner</span>
-            <span class="tag">Pipeline</span>
-          </div>
-        </div>
-        <div class="card">
-          <span class="card-icon">&#128218;</span>
-          <h3 class="card-title">Built-in Research Methods</h3>
-          <p class="card-description">
-            Ready-to-use pipelines from published evaluation research. Run established methods with a single function call, or use them as starting points.
-          </p>
-          <div class="card-tags">
-            <span class="tag">TICK</span>
-            <span class="tag">RocketEval</span>
-            <span class="tag">RLCF</span>
-            <span class="tag">CheckEval</span>
-            <span class="tag">InteractEval</span>
-          </div>
-        </div>
-        <div class="card">
-          <span class="card-icon">&#9000;</span>
-          <h3 class="card-title">CLI + Web UI</h3>
-          <p class="card-description">
-            Run evaluations from the terminal or launch the interactive web interface for visual exploration, batch processing, and checklist building.
-          </p>
-          <div class="card-tags">
-            <span class="tag">CLI</span>
-            <span class="tag">Web UI</span>
-            <span class="tag">Batch</span>
-            <span class="tag">Export</span>
-          </div>
+        <div class="demo-slot">
+          <span class="demo-slot-icon">&#9776;</span>
+          <span class="demo-slot-text">Interactive examples coming soon</span>
         </div>
       </div>
     </div>
@@ -131,7 +83,7 @@
   <!-- Quickstart -->
   <section class="quickstart">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header section-header--center">
         <p class="section-label">Quickstart</p>
         <h2 class="section-title">Up and running in minutes</h2>
       </div>
@@ -166,33 +118,31 @@ result = scorer.<span class="code-function">score</span>(checklist=checklist, re
   <section class="architecture">
     <div class="container">
       <div class="section-header section-header--center">
-        <p class="section-label">Architecture</p>
-        <h2 class="section-title">Instance-level and corpus-level generation</h2>
+        <p class="section-label">Checklist Generation</p>
+        <h2 class="section-title">Instance-level and corpus-level strategies</h2>
         <p class="section-subtitle">
-          Create per-input checklists for fine-grained evaluation, or generate a single checklist across your entire dataset.
+          Generate one checklist per input for fine-grained evaluation,
+          or a single shared checklist across your entire dataset.
+          Five generator strategies — composable with scoring and refinement pipelines.
         </p>
       </div>
       <figure class="architecture-figure">
         <img src="assets/instance-vs-corpus.png" alt="Instance-level vs corpus-level checklist generation" class="architecture-img">
         <figcaption class="architecture-caption">
-          Instance-level generators create one checklist per input. Corpus-level generators create one checklist for all inputs.
+          Instance-level: one checklist per input. Corpus-level: one checklist for all inputs.
         </figcaption>
       </figure>
-    </div>
-  </section>
-
-  <hr class="divider">
-
-  <!-- Demo Placeholder -->
-  <section class="demo">
-    <div class="container">
-      <div class="section-header section-header--center">
-        <p class="section-label">Demo</p>
-        <h2 class="section-title">See it in action</h2>
-      </div>
-      <div class="demo-slot">
-        <span class="demo-slot-icon">&#9654;</span>
-        <span class="demo-slot-text">Demo video coming soon</span>
+      <div class="architecture-tags">
+        <span class="tag">Direct</span>
+        <span class="tag">Contrastive</span>
+        <span class="tag">Inductive</span>
+        <span class="tag">Deductive</span>
+        <span class="tag">Interactive</span>
+        <span class="tag">TICK</span>
+        <span class="tag">RocketEval</span>
+        <span class="tag">RLCF</span>
+        <span class="tag">CheckEval</span>
+        <span class="tag">InteractEval</span>
       </div>
     </div>
   </section>
