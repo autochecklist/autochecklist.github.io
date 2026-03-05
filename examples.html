@@ -48,7 +48,8 @@
 
       <!-- Example display -->
       <div id="example-display">
-        <div class="example-block" id="example-block"></div>
+        <div class="example-input-solo" id="example-input-solo"></div>
+        <div class="example-target-ref-row" id="example-target-ref-row"></div>
         <div id="method-cards-container"></div>
       </div>
     </div>
@@ -138,20 +139,18 @@
     }
 
     function renderInputs(ex) {
-      var block = document.getElementById('example-block');
-      block.textContent = '';
+      // Input in its own container
+      var solo = document.getElementById('example-input-solo');
+      solo.textContent = '';
+      solo.appendChild(makeInputBlock('Input', ex.input));
 
-      // Input full-width on top
-      block.appendChild(makeInputBlock('Input', ex.input));
-
-      // Target and Reference side by side below
-      var row = document.createElement('div');
-      row.className = 'example-block-row';
+      // Target and Reference side by side in a separate container
+      var row = document.getElementById('example-target-ref-row');
+      row.textContent = '';
       row.appendChild(makeInputBlock('Target', ex.target));
       if (ex.reference) {
         row.appendChild(makeInputBlock('Reference', ex.reference));
       }
-      block.appendChild(row);
     }
 
     function makeLabelGroup(text) {
@@ -171,22 +170,39 @@
       var container = document.getElementById('method-cards-container');
       container.textContent = '';
 
-      // Label row: "Reference-Free ───" | "Uses Reference ───"
-      var labels = document.createElement('div');
-      labels.className = 'method-cards-labels';
-      labels.appendChild(makeLabelGroup('Reference-Free'));
-      labels.appendChild(makeLabelGroup('Uses Reference'));
-      container.appendChild(labels);
+      // Two groups side by side, each with label on top + cards below
+      var wrapper = document.createElement('div');
+      wrapper.className = 'method-cards-row';
 
-      // Single horizontal row of all 4 cards
-      var row = document.createElement('div');
-      row.className = 'method-cards';
-      ['tick', 'rlcf_candidates_only', 'rocketeval', 'rlcf_candidate'].forEach(function(key) {
+      // Reference-Free group
+      var group1 = document.createElement('div');
+      group1.className = 'method-cards-group';
+      group1.appendChild(makeLabelGroup('Reference-Free'));
+      var cards1 = document.createElement('div');
+      cards1.className = 'method-cards';
+      ['tick', 'rlcf_candidates_only'].forEach(function(key) {
         var pipeline = ex.pipelines[key];
         if (!pipeline) return;
-        row.appendChild(renderCard(pipeline, key));
+        cards1.appendChild(renderCard(pipeline, key));
       });
-      container.appendChild(row);
+      group1.appendChild(cards1);
+      wrapper.appendChild(group1);
+
+      // Uses Reference group
+      var group2 = document.createElement('div');
+      group2.className = 'method-cards-group';
+      group2.appendChild(makeLabelGroup('Uses Reference'));
+      var cards2 = document.createElement('div');
+      cards2.className = 'method-cards';
+      ['rocketeval', 'rlcf_candidate'].forEach(function(key) {
+        var pipeline = ex.pipelines[key];
+        if (!pipeline) return;
+        cards2.appendChild(renderCard(pipeline, key));
+      });
+      group2.appendChild(cards2);
+      wrapper.appendChild(group2);
+
+      container.appendChild(wrapper);
     }
 
     function renderCard(pipeline, pipelineKey) {
@@ -315,19 +331,19 @@
       }
 
       var isRlcf = pipelineKey === 'rlcf_candidates_only' || pipelineKey === 'rlcf_candidate';
-      if (isRlcf && item.weight !== 100.0) {
+      if (isRlcf && item.weight != null) {
         var weight = document.createElement('span');
         weight.className = 'checklist-weight';
-        weight.textContent = 'w=' + item.weight;
+        weight.textContent = ' w=' + item.weight;
         content.appendChild(weight);
       }
 
-      if (item.confidence !== null && item.confidence !== undefined) {
+      if (item.confidence != null) {
         var conf = getConfidenceLabel(item.confidence);
         var confSpan = document.createElement('span');
         confSpan.className = 'checklist-confidence';
         confSpan.style.color = conf.color;
-        confSpan.textContent = conf.label;
+        confSpan.textContent = ' ' + conf.label;
         content.appendChild(confSpan);
       }
 

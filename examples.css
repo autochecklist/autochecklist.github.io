@@ -46,29 +46,19 @@
 
 /* ── Input display ── */
 
-.example-block {
-  background: var(--surface-elevated);
-  border-radius: var(--radius-lg);
-  padding: 1.25rem;
-  margin-bottom: 1.5rem;
+.example-input-solo {
+  margin-bottom: 1rem;
+}
+
+.example-target-ref-row {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 1rem;
+  margin-bottom: 1.5rem;
 }
 
-.example-block .example-input {
-  background: transparent;
-  padding: 0;
-  border-radius: 0;
-}
-
-.example-block-row {
-  display: flex;
-  gap: 1.25rem;
-}
-
-.example-block-row > .example-input {
-  flex: 1;
+.example-target-ref-row > .example-input {
+  flex: 1 1 0%;
   min-width: 0;
 }
 
@@ -102,17 +92,25 @@
 
 /* ── Method cards ── */
 
-.method-cards-labels {
+.method-cards-row {
   display: flex;
-  gap: 1rem;
-  margin-bottom: 0.5rem;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 1.5rem;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+}
+
+.method-cards-group {
+  flex: 0 0 auto;
 }
 
 .method-cards-label-group {
-  flex: 1;
   display: flex;
+  flex-direction: row;
   align-items: center;
   gap: 0.5rem;
+  margin-bottom: 0.75rem;
 }
 
 .method-cards-label-text {
@@ -127,17 +125,17 @@
 }
 
 .method-cards-label-line {
-  flex: 1;
+  flex: 1 1 0%;
   height: 1px;
   background: var(--border-strong);
+  min-width: 2rem;
 }
 
 .method-cards {
   display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
   gap: 1rem;
-  overflow-x: auto;
-  padding-bottom: 1rem;
-  scroll-snap-type: x mandatory;
 }
 
 /* ── Method card ── */
@@ -337,13 +335,12 @@
 /* ── Responsive ── */
 
 @media (max-width: 768px) {
-  .example-block-row {
+  .example-target-ref-row {
     flex-direction: column;
   }
 
-  .method-cards-labels {
+  .method-cards-row {
     flex-direction: column;
-    gap: 0.25rem;
   }
 
   .method-cards {
