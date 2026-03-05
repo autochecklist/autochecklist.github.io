@@ -1,0 +1,650 @@
+{
+  "examples": [
+    {
+      "id": "example-0",
+      "label": "Constrained Creative Writing",
+      "input": "Only use the provided words. Do not use other words, or any other form of these words. Produce only 3-4 sentences.",
+      "target": "John and Mary walked through the park, trying to decide on a place to eat. They saw a few restaurants, but all of them looked bad. None of them seemed to be having a good day.\n\n\"We should just walk and see if we can find something better,\" John suggested.\n\n\"Or maybe we could drive to a different part of town?\" Mary offered.\n\n\"We could do that, but I don't feel like driving today. Let's just walk and see what we come across,\" John said.\n\nSo, they continued to walk and eventually came across a small restaurant that looked good. They went inside and ordered some food. While they were eating, they talked about what they should do next.\n\n\"I think we should go see a movie,\" Mary said.\n\n\"I don't know, I'm not really in the mood to sit in a theater,\" John replied.\n\n\"Well, what do you want to do?\" Mary asked.\n\n\"I don't really have any ideas,\" John said, feeling a little bad.\n\n\"That's okay, we can just walk around some more and see if anything catches our eye,\" Mary suggested.\n\nSo, they finished their meal and walked out of the restaurant. They continued to walk around the park, enjoying the fresh air and each other's company. It was a good day to be outside, even if they didn't have any specific plans.\n\nAs they walked, they saw a group of people playing soccer. John and Mary decided to join in and played with them for a while. They had a lot of fun and made some new friends.\n\nAfter a while, they said goodbye to their new friends and walked back to their car. They got in and drove home, feeling happy and content with their day. Despite not having any specific plans, they had a great time just walking around and seeing what the day had to offer.",
+      "reference": "I apologize for the previous errors in my response. Here's another attempt:\n\nJohn and Mary walked to the park and saw a few people driving by. They decided to walk around the park and saw many beautiful places. After walking for hours, they stopped at a restaurant to eat. Overall, they had a good day together.",
+      "source": "WildBench",
+      "pipelines": {
+        "tick": {
+          "name": "TICK",
+          "description": "Few-shot checklist generation from input text",
+          "generator_type": "Direct",
+          "uses_reference": false,
+          "score": {
+            "passed": 1,
+            "total": 4,
+            "percentage": 25.0,
+            "primary_metric": "pass"
+          },
+          "items": [
+            {
+              "question": "Does the response only use the provided words?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Does the response avoid using any other words or forms of the provided words?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Is the response composed of only 3-4 sentences?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Does the response effectively convey a coherent message?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            }
+          ]
+        },
+        "rocketeval": {
+          "name": "RocketEval",
+          "description": "Confidence-aware checklist from input + reference",
+          "generator_type": "Direct",
+          "uses_reference": true,
+          "score": {
+            "passed": 2,
+            "total": 4,
+            "percentage": 47.3,
+            "primary_metric": "normalized"
+          },
+          "items": [
+            {
+              "question": "Does the response only use the provided words?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": 0.8933094060543488,
+              "confidence_level": "yes_90",
+              "weight": 100.0
+            },
+            {
+              "question": "Is the response limited to 3-4 sentences?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": 0.0,
+              "confidence_level": "no_10",
+              "weight": 100.0
+            },
+            {
+              "question": "Does the response adhere to the instruction of not using any other words or forms?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": 0.9988304908489715,
+              "confidence_level": "yes_90",
+              "weight": 100.0
+            },
+            {
+              "question": "Is the content coherent and relevant to the user's query?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": 2.4300234949792207e-05,
+              "confidence_level": "no_10",
+              "weight": 100.0
+            }
+          ]
+        },
+        "rlcf_candidates_only": {
+          "name": "RLCF Candidates",
+          "description": "Contrastive generation from candidates only",
+          "generator_type": "Contrastive",
+          "uses_reference": false,
+          "score": {
+            "passed": 0,
+            "total": 3,
+            "percentage": 0.0,
+            "primary_metric": "weighted"
+          },
+          "items": [
+            {
+              "question": "Does the response use only the provided words?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Does the response contain 3-4 sentences?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Does the response avoid using any other words or forms of the provided words?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            }
+          ]
+        },
+        "rlcf_candidate": {
+          "name": "RLCF Candidate",
+          "description": "Contrastive generation with candidates + reference",
+          "generator_type": "Contrastive",
+          "uses_reference": true,
+          "score": {
+            "passed": 1,
+            "total": 4,
+            "percentage": 20.0,
+            "primary_metric": "weighted"
+          },
+          "items": [
+            {
+              "question": "Does the response use only the provided words?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Does the response contain 3-4 sentences?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Is the response free of any other words or forms of the provided words?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Is the response coherent and logically structured?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 75.0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "example-1",
+      "label": "Life Advice & Coaching",
+      "input": "I want you to be my coach and mentor. i want to have a conversation with you where you ask me questions. my answers to your questions will help you focus on my passion. i want you to expect short answers.",
+      "target": "While I'm an AI and thus can't provide the depth of guidance and understanding that a human coach or mentor might, I can indeed offer you some strategies that people often find helpful in discovering their passions:\n\n1. **Reflect on Your Curiosity**: Think about what you gravitate toward naturally. What topics do you find yourself reading about or discussing enthusiastically with others? What have you always wanted to learn about or do, but perhaps pushed aside because it wasn't \"practical\"?\n\n2. **Identify Flow Activities**: Recall moments when you have been so absorbed in an activity that you lost track of time. This state of \"flow\" can be a good indicator of where your interests lie.\n\n3. **Look Back**: Consider your childhood interests and hobbies. Sometimes what we enjoyed as children before we felt the pressures of adulthood can point to our true passions.\n\n4. **Try New Experiences**: Sometimes we don't have enough exposure to different activities to really know what we love. Volunteer, take classes, join clubs, or travel\u2014diverse experiences can help ignite a spark.\n\n5. **Consider Your Pain Points**: Sometimes our biggest frustrations can lead to our greatest passions. If there's something in the world that deeply bothers you, your passion might be in working towards a solution for that issue.\n\n6. **Reach Out**: Discuss this with friends, family, or colleagues. They may offer insights or observations that you've overlooked about what seems to excite or engage you.\n\n7. **Professional Assessment**: You might find it beneficial to undertake career assessment tests or strength-finding tools such as the Myers-Briggs Type Indicator, StrengthsFinder, or the Strong Interest Inventory. These can sometimes point out areas of interest or aptitude that you haven't considered.\n\n8. **Experiment and Reflect**: Keep a journal of your daily activities and note when you feel most excited and energized. Patterns over time might suggest areas of passion.\n\n9. **Set Broad Goals**: Instead of looking for a single passion, aim to live a passionate life. This means engaging more deeply with your day-to-day activities, relationships, and work.\n\n10. **Detach from Outcome**: Try to let go of the pressure to find your \"one true passion\". Life is fluid, and interests can change; it's entirely acceptable to have varied interests rather than a single, overwhelming passion.\n\nRemember, finding your passion can be a lifelong journey for some and may not necessarily relate to a career or a money-making endeavor\u2014it could be a hobby, a cause, or a personal challenge. Be patient with yourself and open to possibilities, and you may find that your passion reveals itself through your life experiences.",
+      "reference": "Absolutely, I can guide you through some reflective questions. Remember, your passion may not reveal itself immediately, but your answers can provide direction for where to look.\n\n1. **Childhood Joy**: What activities did you love doing as a child?\n\n2. **Natural Flow**: Can you recall a recent time when you were so engaged in an activity that you lost track of time?\n\n3. **Skills**: What are three things you are naturally good at?\n\n4. **Learning**: What topic could you read 100 books about without getting bored?\n\n5. **Proud Moments**: Describe an achievement or project that made you feel really proud.\n\n6. **Leisure**: How do you like to spend your free time?\n\n7. **Improvement**: What is one thing you believe would make the world a better place?\n\n8. **Legacy**: What do you want to be remembered for?\n\n9. **Energy**: What kinds of tasks or activities give you energy rather than drain it?\n\n10. **Change**: If you could change one aspect of your daily routine, what would it be?\n\nAfter considering these questions, review your responses and look for patterns or recurring themes. These could be indicators of where your interests and passions lie.",
+      "source": "WildBench",
+      "pipelines": {
+        "tick": {
+          "name": "TICK",
+          "description": "Few-shot checklist generation from input text",
+          "generator_type": "Direct",
+          "uses_reference": false,
+          "score": {
+            "passed": 2,
+            "total": 4,
+            "percentage": 50.0,
+            "primary_metric": "pass"
+          },
+          "items": [
+            {
+              "question": "Does the response initiate a conversation by asking questions?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Are the questions in the response designed to help identify the user's passion?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Does the response indicate that it expects short answers from the user?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Is the response supportive and encouraging in tone, appropriate for a coaching context?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            }
+          ]
+        },
+        "rocketeval": {
+          "name": "RocketEval",
+          "description": "Confidence-aware checklist from input + reference",
+          "generator_type": "Direct",
+          "uses_reference": true,
+          "score": {
+            "passed": 2,
+            "total": 8,
+            "percentage": 24.8,
+            "primary_metric": "normalized"
+          },
+          "items": [
+            {
+              "question": "Does the response include reflective questions related to the user's passions?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": 2.5612814259708025e-06,
+              "confidence_level": "no_10",
+              "weight": 100.0
+            },
+            {
+              "question": "Are the questions structured to encourage short answers?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": 1.4738987025864107e-05,
+              "confidence_level": "no_10",
+              "weight": 100.0
+            },
+            {
+              "question": "Does the response provide a variety of question types (e.g., personal experiences, skills, interests)?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": 2.4300250881885864e-05,
+              "confidence_level": "no_10",
+              "weight": 100.0
+            },
+            {
+              "question": "Are the questions designed to help the user identify patterns or themes in their answers?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": 3.120192441201494e-05,
+              "confidence_level": "no_10",
+              "weight": 100.0
+            },
+            {
+              "question": "Is the tone of the response supportive and encouraging?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": 0.9947798743064415,
+              "confidence_level": "yes_90",
+              "weight": 100.0
+            },
+            {
+              "question": "Does the response avoid leading questions that might bias the user's answers?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": 0.985936372130286,
+              "confidence_level": "yes_90",
+              "weight": 100.0
+            },
+            {
+              "question": "Are there at least 5 distinct questions presented in the response?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": 8.939698311285031e-06,
+              "confidence_level": "no_10",
+              "weight": 100.0
+            },
+            {
+              "question": "Does the response maintain clarity and simplicity in language?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": 0.004070138199119559,
+              "confidence_level": "no_10",
+              "weight": 100.0
+            }
+          ]
+        },
+        "rlcf_candidates_only": {
+          "name": "RLCF Candidates",
+          "description": "Contrastive generation from candidates only",
+          "generator_type": "Contrastive",
+          "uses_reference": false,
+          "score": {
+            "passed": 0,
+            "total": 4,
+            "percentage": 0.0,
+            "primary_metric": "weighted"
+          },
+          "items": [
+            {
+              "question": "Does the response include a question directed at the user to facilitate the conversation?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Does the response encourage short answers from the user?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 75.0
+            },
+            {
+              "question": "Is the tone of the response supportive and engaging?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 50.0
+            },
+            {
+              "question": "Does the response express a willingness to coach and mentor?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 50.0
+            }
+          ]
+        },
+        "rlcf_candidate": {
+          "name": "RLCF Candidate",
+          "description": "Contrastive generation with candidates + reference",
+          "generator_type": "Contrastive",
+          "uses_reference": true,
+          "score": {
+            "passed": 1,
+            "total": 5,
+            "percentage": 17.9,
+            "primary_metric": "weighted"
+          },
+          "items": [
+            {
+              "question": "Does the response include a series of questions for the user to answer?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Are the questions designed to help the user identify their passion?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Does the response encourage short answers from the user?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 95.0
+            },
+            {
+              "question": "Is the tone of the response supportive and encouraging?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 75.0
+            },
+            {
+              "question": "Does the response provide a clear structure for the conversation?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 50.0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "example-2",
+      "label": "Wordplay & Brainstorming",
+      "input": "give me options for full names, but don\u2019t repeat the same letters twice.",
+      "target": "Creating full names that include as many unique letters from the alphabet as possible, without repeating any letter, can be challenging but fun. Keep in mind that the more common the name, the harder it will be to incorporate a wider variety of letters. Here are some examples of names that use many letters of the alphabet, each letter once:\n\n1. Alexander Quincy Gobit\n2. Benjamina Christof D'Loux\n3. Dominique Veralph Blyth\n4. Ezekial Quon Bradfisch\n5. Jasper Quinton Xavier\n6. Xavier Montgomery Blaze\n7. Felicity Dawn Q. Borugh\n8. Quentin Zachary Klimbsdorf\n9. Veronica Stacey Dahlbump\n10. Zephyr Dominica Blanquet\n\nRemember that with the English alphabet having 26 letters, it's impossible to have a name that uses all the letters without repeating any unless you use initials and surnames creatively or invent names that aren't necessarily in common use.",
+      "reference": "Sure, creating names where each letter is used only once is quite a puzzle, but here are a few examples:\n\n1. Alfredo B. Cynquist\n2. Brenda Joy G. Klimp\n3. Charles Quinton Duv\n4. David Leon Brisk Q.\n5. Eugene Max Cyril Toph\n6. Fiona Stacey B. Druqw\n7. Grant Felix C. J. Bodhi\n8. Quinta Melody Brook Hvs\n9. Jack Deon Q. Gilmurth\n10. Krista Joy Blinq Fumed\n\nNote that these names are designed to adhere to your criteria rather than to reflect common or easily-pronounceable names. With each full name, care is taken to avoid repeating any letter, which greatly limits the pool of usable letters for each subsequent part of the name.",
+      "source": "WildBench",
+      "pipelines": {
+        "tick": {
+          "name": "TICK",
+          "description": "Few-shot checklist generation from input text",
+          "generator_type": "Direct",
+          "uses_reference": false,
+          "score": {
+            "passed": 3,
+            "total": 4,
+            "percentage": 75.0,
+            "primary_metric": "pass"
+          },
+          "items": [
+            {
+              "question": "Does the response provide options for full names?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Does the response ensure that no letters are repeated in any of the provided names?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Does the response contain a variety of full names?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Is the response clear and easy to understand?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            }
+          ]
+        },
+        "rocketeval": {
+          "name": "RocketEval",
+          "description": "Confidence-aware checklist from input + reference",
+          "generator_type": "Direct",
+          "uses_reference": true,
+          "score": {
+            "passed": 2,
+            "total": 7,
+            "percentage": 24.8,
+            "primary_metric": "normalized"
+          },
+          "items": [
+            {
+              "question": "Does the response provide options for full names?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": 0.06754675120600638,
+              "confidence_level": "no_10",
+              "weight": 100.0
+            },
+            {
+              "question": "Does each name in the response avoid repeating any letters?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": 0.0,
+              "confidence_level": "no_10",
+              "weight": 100.0
+            },
+            {
+              "question": "Are the names in the response unique and not commonly used?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": 0.0,
+              "confidence_level": "no_10",
+              "weight": 100.0
+            },
+            {
+              "question": "Is the format of each name consistent with typical full name structures?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": 0.7310585317540644,
+              "confidence_level": "yes_70",
+              "weight": 100.0
+            },
+            {
+              "question": "Does the response include a sufficient number of name options?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": 0.9241418199787564,
+              "confidence_level": "yes_90",
+              "weight": 100.0
+            },
+            {
+              "question": "Is the response clear and understandable?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": 0.014063627043245474,
+              "confidence_level": "no_10",
+              "weight": 100.0
+            },
+            {
+              "question": "Does the response adhere to the instruction of not repeating letters in any part of the names?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": 0.0001584361671713235,
+              "confidence_level": "no_10",
+              "weight": 100.0
+            }
+          ]
+        },
+        "rlcf_candidates_only": {
+          "name": "RLCF Candidates",
+          "description": "Contrastive generation from candidates only",
+          "generator_type": "Contrastive",
+          "uses_reference": false,
+          "score": {
+            "passed": 2,
+            "total": 4,
+            "percentage": 41.7,
+            "primary_metric": "weighted"
+          },
+          "items": [
+            {
+              "question": "Do all full names provided contain unique letters without any repetitions?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Are the names presented in a clear and organized list format?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 75.0
+            },
+            {
+              "question": "Is each full name composed of a first name and a last name?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 75.0
+            },
+            {
+              "question": "Are there at least five unique full names provided?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 50.0
+            }
+          ]
+        },
+        "rlcf_candidate": {
+          "name": "RLCF Candidate",
+          "description": "Contrastive generation with candidates + reference",
+          "generator_type": "Contrastive",
+          "uses_reference": true,
+          "score": {
+            "passed": 3,
+            "total": 5,
+            "percentage": 64.3,
+            "primary_metric": "weighted"
+          },
+          "items": [
+            {
+              "question": "Does the response provide full names as requested?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Does each full name contain unique letters without any repetitions?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Are there at least 5 full names provided in the response?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 75.0
+            },
+            {
+              "question": "Is the format of the names consistent (e.g., first name followed by last name)?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 50.0
+            },
+            {
+              "question": "Are the names appropriate and suitable for general use?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 25.0
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
