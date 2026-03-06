@@ -13,20 +13,7 @@
 </head>
 <body>
 
-  <!-- Nav -->
-  <nav class="nav">
-    <div class="container">
-      <a href="/" class="nav-brand">
-        <img src="assets/ac_dark.png" alt="" class="nav-brand-icon">
-        <span class="nav-brand-text">AutoChecklist</span>
-      </a>
-      <ul class="nav-links">
-        <li><a href="docs/">Docs</a></li>
-        <li><a href="/">Paper</a></li>
-        <li><a href="https://github.com/ChicagoHAI/AutoChecklist">GitHub</a></li>
-      </ul>
-    </div>
-  </nav>
+  <div id="nav"></div>
 
   <!-- Hero -->
   <section class="hero">
@@ -51,7 +38,7 @@
       </div>
       <div class="quickstart-content">
         <div class="code-block">
-<code><span class="code-prompt">$ </span>uv pip install autochecklist</code>
+<code><span class="code-prompt">$ </span>pip install autochecklist</code>
         </div>
         <a href="docs/getting-started/installation/" class="quickstart-link">
           Full installation guide &#8594;
@@ -71,7 +58,8 @@
         </p>
       </div>
       <figure class="architecture-figure">
-        <img src="assets/instance-vs-corpus.png" alt="Instance-level vs corpus-level checklist generation" class="architecture-img">
+        <img src="assets/autochecklist-instance.png" alt="Instance-level checklist generation" class="architecture-img">
+        <img src="assets/autochecklist-corpus.png" alt="Corpus-level checklist generation" class="architecture-img">
       </figure>
       <div class="other-features">
         <p class="other-features-title">Other Features</p>
@@ -92,6 +80,7 @@
     </div>
   </footer>
 
+<script src="nav.js"></script>
 <script>document.getElementById('year').textContent=new Date().getFullYear();</script>
 </body>
 </html>

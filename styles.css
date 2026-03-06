@@ -457,17 +457,20 @@ section {
 
 /* ── Architecture ── */
 .architecture-figure {
-  text-align: center;
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .architecture-img {
-  max-width: 600px;
-  width: 100%;
+  max-width: 340px;
+  width: calc(50% - 0.75rem);
   border: none;
   padding: 0;
   background: transparent;
-  border-radius: 2.25rem;
-  /* box-shadow: 0 2px 16px rgba(0, 0, 0, 0.12); */
+  border-radius: 2.55rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
 }
 
 .architecture-tags {
