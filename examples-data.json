@@ -2,51 +2,111 @@
   "examples": [
     {
       "id": "example-0",
-      "label": "Constrained Creative Writing",
-      "input": "Only use the provided words. Do not use other words, or any other form of these words. Produce only 3-4 sentences.",
-      "target": "John and Mary walked through the park, trying to decide on a place to eat. They saw a few restaurants, but all of them looked bad. None of them seemed to be having a good day.\n\n\"We should just walk and see if we can find something better,\" John suggested.\n\n\"Or maybe we could drive to a different part of town?\" Mary offered.\n\n\"We could do that, but I don't feel like driving today. Let's just walk and see what we come across,\" John said.\n\nSo, they continued to walk and eventually came across a small restaurant that looked good. They went inside and ordered some food. While they were eating, they talked about what they should do next.\n\n\"I think we should go see a movie,\" Mary said.\n\n\"I don't know, I'm not really in the mood to sit in a theater,\" John replied.\n\n\"Well, what do you want to do?\" Mary asked.\n\n\"I don't really have any ideas,\" John said, feeling a little bad.\n\n\"That's okay, we can just walk around some more and see if anything catches our eye,\" Mary suggested.\n\nSo, they finished their meal and walked out of the restaurant. They continued to walk around the park, enjoying the fresh air and each other's company. It was a good day to be outside, even if they didn't have any specific plans.\n\nAs they walked, they saw a group of people playing soccer. John and Mary decided to join in and played with them for a while. They had a lot of fun and made some new friends.\n\nAfter a while, they said goodbye to their new friends and walked back to their car. They got in and drove home, feeling happy and content with their day. Despite not having any specific plans, they had a great time just walking around and seeing what the day had to offer.",
-      "reference": "I apologize for the previous errors in my response. Here's another attempt:\n\nJohn and Mary walked to the park and saw a few people driving by. They decided to walk around the park and saw many beautiful places. After walking for hours, they stopped at a restaurant to eat. Overall, they had a good day together.",
+      "label": "Math",
+      "input": "Find the number of integers between 1 and 10 000 inclusive that are:\ndivisible by exactly three of 3, 5, 7, 11",
+      "target": "We will use the Principle of Inclusion-Exclusion to find the number of integers between 1 and 10,000 that are divisible by exactly three of the four given primes.\n\nFirst, we find the least common multiples of all possible combinations of three of the four prime numbers:\n- lcm(3, 5, 7) = 3 * 5 * 7 = 105\n- lcm(3, 5, 11) = 3 * 5 * 11 = 165\n- lcm(3, 7, 11) = 3 * 7 * 11 = 231\n- lcm(5, 7, 11) = 5 * 7 * 11 = 385\n\nNext, we count the number of multiples of each lcm between 1 and 10,000:\n- 10000/105 = 95 5/21 \u2192 There are 95 multiples of 105.\n- 10000/165 = 60 10/11 \u2192 There are 60 multiples of 165.\n- 10000/231 = 43 3/11 \u2192 There are 43 multiples of 231.\n- 10000/385 = 25 15/19 \u2192 There are 25 multiples of 385.\n\nSo, there are 95 + 60 + 43 + 25 = 223 integers divisible by exactly three of the four given prime numbers.\n\nHowever, we must subtract the number of integers that are divisible by all four primes, because they are counted three times in the previous calculation.\n\nThe least common multiple of all four prime numbers is lcm(3, 5, 7, 11) = 3 * 5 * 7 * 11 = 1,155. There are 10000/1155 = 8 8/13 multiples of 1,155 between 1 and 10,000, so there are 8 such integers.\n\nNow, we must subtract this count from the previous sum: 223 - 3 * 8 = 223 - 24 = 199\n\nTherefore, there are 199 integers between 1 and 10,000 that are divisible by exactly three of the prime numbers 3, 5, 7, and 11.",
+      "reference": "191\n\nExplanation:\n- Exactly 3 of {3,5,7,11} means divisible by the lcm of each triple but not by the fourth.\n- Counts up to 10,000:\n  - 3,5,7 (lcm 105) but not 11: floor(10000/105) \u2212 floor(10000/1155) = 95 \u2212 8 = 87\n  - 3,5,11 (lcm 165) but not 7: 60 \u2212 8 = 52\n  - 3,7,11 (lcm 231) but not 5: 43 \u2212 8 = 35\n  - 5,7,11 (lcm 385) but not 3: 25 \u2212 8 = 17\n- Sum: 87 + 52 + 35 + 17 = 191",
       "source": "WildBench",
+      "ground_truth_checklist": [
+        "Does the output correctly identify the least common multiples (LCM) for each combination of three numbers out of 3, 5, 7, and 11?",
+        "Does the output correctly apply the Principle of Inclusion-Exclusion to calculate the number of integers divisible by exactly three of the numbers 3, 5, 7, 11?",
+        "Does the output correctly subtract the count of integers divisible by all four numbers (3, 5, 7, 11) from the calculated totals?",
+        "Does the output provide the correct final count of integers between 1 and 10,000 that are divisible by exactly three of the numbers 3, 5, 7, 11?",
+        "Is the mathematical reasoning and calculation process clearly explained and easy to follow?",
+        "Does the solution correctly identify the least common multiple (LCM) of the numbers that the integers must be divisible by (3, 5, 7)?",
+        "Does the solution correctly calculate the number of integers between 1 and 10,000 that are divisible by the LCM?",
+        "Does the solution correctly subtract the number of integers that are also divisible by the fourth number (11) to find the number of integers divisible by exactly three of the given numbers?",
+        "Does the solution provide a clear explanation of the steps taken to arrive at the final answer?",
+        "Is the final answer correct based on the given constraints?"
+      ],
       "pipelines": {
-        "tick": {
-          "name": "TICK",
-          "description": "Few-shot checklist generation from input text",
-          "generator_type": "Direct",
+        "ground_truth": {
+          "name": "Ground Truth",
+          "description": "Reference checklist from WildBench",
+          "generator_type": null,
           "uses_reference": false,
           "score": {
-            "passed": 1,
-            "total": 4,
-            "percentage": 25.0,
-            "primary_metric": "pass"
+            "passed": 3,
+            "total": 10,
+            "percentage": 30.0,
+            "primary_metric": "weighted"
           },
           "items": [
             {
-              "question": "Does the response only use the provided words?",
-              "passed": false,
-              "reasoning": null,
-              "confidence": null,
-              "confidence_level": null,
-              "weight": 100.0
-            },
-            {
-              "question": "Does the response avoid using any other words or forms of the provided words?",
-              "passed": false,
-              "reasoning": null,
-              "confidence": null,
-              "confidence_level": null,
-              "weight": 100.0
-            },
-            {
-              "question": "Is the response composed of only 3-4 sentences?",
-              "passed": false,
-              "reasoning": null,
-              "confidence": null,
-              "confidence_level": null,
-              "weight": 100.0
-            },
-            {
-              "question": "Does the response effectively convey a coherent message?",
+              "question": "Does the output correctly identify the least common multiples (LCM) for each combination of three numbers out of 3, 5, 7, and 11?",
               "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Does the output correctly apply the Principle of Inclusion-Exclusion to calculate the number of integers divisible by exactly three of the numbers 3, 5, 7, 11?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Does the output correctly subtract the count of integers divisible by all four numbers (3, 5, 7, 11) from the calculated totals?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Does the output provide the correct final count of integers between 1 and 10,000 that are divisible by exactly three of the numbers 3, 5, 7, 11?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Is the mathematical reasoning and calculation process clearly explained and easy to follow?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Does the solution correctly identify the least common multiple (LCM) of the numbers that the integers must be divisible by (3, 5, 7)?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Does the solution correctly calculate the number of integers between 1 and 10,000 that are divisible by the LCM?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Does the solution correctly subtract the number of integers that are also divisible by the fourth number (11) to find the number of integers divisible by exactly three of the given numbers?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Does the solution provide a clear explanation of the steps taken to arrive at the final answer?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Is the final answer correct based on the given constraints?",
+              "passed": false,
               "reasoning": null,
               "confidence": null,
               "confidence_level": null,
@@ -54,82 +114,200 @@
             }
           ]
         },
-        "rocketeval": {
-          "name": "RocketEval",
-          "description": "Confidence-aware checklist from input + reference",
+        "direct": {
+          "name": "Direct",
+          "description": "Checklist generated directly from the input",
+          "generator_type": "Direct",
+          "uses_reference": false,
+          "score": {
+            "passed": 5,
+            "total": 7,
+            "percentage": 69.6,
+            "primary_metric": "weighted"
+          },
+          "items": [
+            {
+              "question": "Does the response provide a single integer as the final answer representing the count?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Is the counting range interpreted as inclusive of both 1 and 10,000?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 95.0
+            },
+            {
+              "question": "Does the count include only integers divisible by exactly three of the set {3, 5, 7, 11} and not divisible by the remaining one?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Are integers divisible by all four of 3, 5, 7, and 11 excluded from the count?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 90.0
+            },
+            {
+              "question": "Are integers divisible by fewer than three of 3, 5, 7, and 11 excluded from the count?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 85.0
+            },
+            {
+              "question": "Is the reported count an exact value (not an estimate, interval, or formula)?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 85.0
+            },
+            {
+              "question": "Is the final answer unambiguous (i.e., not multiple different totals given)?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 70.0
+            }
+          ]
+        },
+        "direct_ref": {
+          "name": "Direct + Ref",
+          "description": "Checklist generated from input and reference",
           "generator_type": "Direct",
           "uses_reference": true,
+          "score": {
+            "passed": 5,
+            "total": 8,
+            "percentage": 59.5,
+            "primary_metric": "weighted"
+          },
+          "items": [
+            {
+              "question": "Does the response provide a single integer as the final answer?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 95.0
+            },
+            {
+              "question": "Is the reported integer equal to the count of n in the range 1 to 10,000 inclusive that are divisible by exactly three of {3,5,7,11}?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Does the solution treat the interval 1 to 10,000 as inclusive on both ends?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 90.0
+            },
+            {
+              "question": "Does the counting explicitly or implicitly exclude numbers divisible by all four of 3, 5, 7, and 11?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 95.0
+            },
+            {
+              "question": "Does the counting exclude numbers divisible by fewer than three of {3,5,7,11}?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 90.0
+            },
+            {
+              "question": "If least common multiples are used, are they correct: lcm(3,5,7)=105, lcm(3,5,11)=165, lcm(3,7,11)=231, lcm(5,7,11)=385, and lcm(3,5,7,11)=1155?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 60.0
+            },
+            {
+              "question": "If a per-triple breakdown is provided, do the per-triple counts sum exactly to the final reported total?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 50.0
+            },
+            {
+              "question": "Does the response avoid adding unrelated or extraneous content beyond the requested result/explanation?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 25.0
+            }
+          ]
+        },
+        "contrastive": {
+          "name": "Contrastive",
+          "description": "Checklist generated by contrasting candidate outputs",
+          "generator_type": "Contrastive",
+          "uses_reference": false,
           "score": {
             "passed": 2,
-            "total": 4,
-            "percentage": 47.3,
-            "primary_metric": "normalized"
-          },
-          "items": [
-            {
-              "question": "Does the response only use the provided words?",
-              "passed": true,
-              "reasoning": null,
-              "confidence": 0.8933094060543488,
-              "confidence_level": "yes_90",
-              "weight": 100.0
-            },
-            {
-              "question": "Is the response limited to 3-4 sentences?",
-              "passed": false,
-              "reasoning": null,
-              "confidence": 0.0,
-              "confidence_level": "no_10",
-              "weight": 100.0
-            },
-            {
-              "question": "Does the response adhere to the instruction of not using any other words or forms?",
-              "passed": true,
-              "reasoning": null,
-              "confidence": 0.9988304908489715,
-              "confidence_level": "yes_90",
-              "weight": 100.0
-            },
-            {
-              "question": "Is the content coherent and relevant to the user's query?",
-              "passed": false,
-              "reasoning": null,
-              "confidence": 2.4300234949792207e-05,
-              "confidence_level": "no_10",
-              "weight": 100.0
-            }
-          ]
-        },
-        "rlcf_candidates_only": {
-          "name": "RLCF Candidates",
-          "description": "Contrastive generation from candidates only",
-          "generator_type": "Contrastive",
-          "uses_reference": false,
-          "score": {
-            "passed": 0,
-            "total": 3,
-            "percentage": 0.0,
+            "total": 5,
+            "percentage": 38.6,
             "primary_metric": "weighted"
           },
           "items": [
             {
-              "question": "Does the response use only the provided words?",
+              "question": "Is the final answer provided as a single integer count?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 80.0
+            },
+            {
+              "question": "Does the response consider integers from 1 to 10,000 inclusive?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 90.0
+            },
+            {
+              "question": "Does the response count numbers divisible by exactly three of {3,5,7,11} and not by the remaining one?",
               "passed": false,
               "reasoning": null,
               "confidence": null,
               "confidence_level": null,
-              "weight": 100.0
+              "weight": 95.0
             },
             {
-              "question": "Does the response contain 3-4 sentences?",
+              "question": "Does the response exclude numbers divisible by all four primes (i.e., multiples of 1155) from the count?",
               "passed": false,
               "reasoning": null,
               "confidence": null,
               "confidence_level": null,
-              "weight": 100.0
+              "weight": 75.0
             },
             {
-              "question": "Does the response avoid using any other words or forms of the provided words?",
+              "question": "Is the final count equal to 191?",
               "passed": false,
               "reasoning": null,
               "confidence": null,
@@ -138,20 +316,28 @@
             }
           ]
         },
-        "rlcf_candidate": {
-          "name": "RLCF Candidate",
-          "description": "Contrastive generation with candidates + reference",
+        "contrastive_ref": {
+          "name": "Contrastive + Ref",
+          "description": "Checklist generated by contrasting candidates with reference",
           "generator_type": "Contrastive",
           "uses_reference": true,
           "score": {
-            "passed": 1,
-            "total": 4,
-            "percentage": 20.0,
+            "passed": 3,
+            "total": 5,
+            "percentage": 60.5,
             "primary_metric": "weighted"
           },
           "items": [
             {
-              "question": "Does the response use only the provided words?",
+              "question": "Is the final output a single integer value?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 70.0
+            },
+            {
+              "question": "Is the final integer answer equal to 191?",
               "passed": false,
               "reasoning": null,
               "confidence": null,
@@ -159,23 +345,23 @@
               "weight": 100.0
             },
             {
-              "question": "Does the response contain 3-4 sentences?",
-              "passed": false,
+              "question": "Does the solution consider integers in the inclusive range from 1 to 10,000?",
+              "passed": true,
               "reasoning": null,
               "confidence": null,
               "confidence_level": null,
-              "weight": 100.0
+              "weight": 90.0
             },
             {
-              "question": "Is the response free of any other words or forms of the provided words?",
-              "passed": false,
+              "question": "Does the reasoning interpret \u201cexactly three of 3, 5, 7, 11\u201d as divisible by three specific primes and not divisible by the remaining one?",
+              "passed": true,
               "reasoning": null,
               "confidence": null,
               "confidence_level": null,
-              "weight": 100.0
+              "weight": 95.0
             },
             {
-              "question": "Is the response coherent and logically structured?",
+              "question": "If an explanation is provided, does it explicitly exclude numbers divisible by all four primes (i.e., multiples of 1155)?",
               "passed": true,
               "reasoning": null,
               "confidence": null,
@@ -188,150 +374,39 @@
     },
     {
       "id": "example-1",
-      "label": "Life Advice & Coaching",
-      "input": "I want you to be my coach and mentor. i want to have a conversation with you where you ask me questions. my answers to your questions will help you focus on my passion. i want you to expect short answers.",
-      "target": "While I'm an AI and thus can't provide the depth of guidance and understanding that a human coach or mentor might, I can indeed offer you some strategies that people often find helpful in discovering their passions:\n\n1. **Reflect on Your Curiosity**: Think about what you gravitate toward naturally. What topics do you find yourself reading about or discussing enthusiastically with others? What have you always wanted to learn about or do, but perhaps pushed aside because it wasn't \"practical\"?\n\n2. **Identify Flow Activities**: Recall moments when you have been so absorbed in an activity that you lost track of time. This state of \"flow\" can be a good indicator of where your interests lie.\n\n3. **Look Back**: Consider your childhood interests and hobbies. Sometimes what we enjoyed as children before we felt the pressures of adulthood can point to our true passions.\n\n4. **Try New Experiences**: Sometimes we don't have enough exposure to different activities to really know what we love. Volunteer, take classes, join clubs, or travel\u2014diverse experiences can help ignite a spark.\n\n5. **Consider Your Pain Points**: Sometimes our biggest frustrations can lead to our greatest passions. If there's something in the world that deeply bothers you, your passion might be in working towards a solution for that issue.\n\n6. **Reach Out**: Discuss this with friends, family, or colleagues. They may offer insights or observations that you've overlooked about what seems to excite or engage you.\n\n7. **Professional Assessment**: You might find it beneficial to undertake career assessment tests or strength-finding tools such as the Myers-Briggs Type Indicator, StrengthsFinder, or the Strong Interest Inventory. These can sometimes point out areas of interest or aptitude that you haven't considered.\n\n8. **Experiment and Reflect**: Keep a journal of your daily activities and note when you feel most excited and energized. Patterns over time might suggest areas of passion.\n\n9. **Set Broad Goals**: Instead of looking for a single passion, aim to live a passionate life. This means engaging more deeply with your day-to-day activities, relationships, and work.\n\n10. **Detach from Outcome**: Try to let go of the pressure to find your \"one true passion\". Life is fluid, and interests can change; it's entirely acceptable to have varied interests rather than a single, overwhelming passion.\n\nRemember, finding your passion can be a lifelong journey for some and may not necessarily relate to a career or a money-making endeavor\u2014it could be a hobby, a cause, or a personal challenge. Be patient with yourself and open to possibilities, and you may find that your passion reveals itself through your life experiences.",
-      "reference": "Absolutely, I can guide you through some reflective questions. Remember, your passion may not reveal itself immediately, but your answers can provide direction for where to look.\n\n1. **Childhood Joy**: What activities did you love doing as a child?\n\n2. **Natural Flow**: Can you recall a recent time when you were so engaged in an activity that you lost track of time?\n\n3. **Skills**: What are three things you are naturally good at?\n\n4. **Learning**: What topic could you read 100 books about without getting bored?\n\n5. **Proud Moments**: Describe an achievement or project that made you feel really proud.\n\n6. **Leisure**: How do you like to spend your free time?\n\n7. **Improvement**: What is one thing you believe would make the world a better place?\n\n8. **Legacy**: What do you want to be remembered for?\n\n9. **Energy**: What kinds of tasks or activities give you energy rather than drain it?\n\n10. **Change**: If you could change one aspect of your daily routine, what would it be?\n\nAfter considering these questions, review your responses and look for patterns or recurring themes. These could be indicators of where your interests and passions lie.",
+      "label": "Coding",
+      "input": "Using a loop, create an 8x8 chessboard that includes the labels on all four sides, as pictured below. \nAlign the top and bottom labels with the tiles, so everything looks like a grid. Do not put spaces between the letter and number of each tile.\nHardcoding the chessboard by simply using the print() function is obviously not allowed.\nBONUS of 3 marks: Print the entire chessboard and labels within loop structures. No prints are allowed outside of the loop. The outer loop must iterate 10 times.",
+      "target": "Here's the code to create the 8x8 chessboard with labels on all four sides:\n\n```python\n# Create a function to print the chessboard with loop structures\ndef print_chessboard():\n    for row in range(1, 11):\n        if row == 1 or row == 10:\n            labels = \"  ABCDEFGH  \"\n            print(labels)\n        else:\n            line = \"\"\n            for col in range(1, 11):\n                if col == 1 or col == 10:\n                    line += str(9 - row)\n                else:\n                    line += str(9 - row) + chr(64 + col)\n            print(line[:9] + line[-1])\n\n# Call the function\nprint_chessboard()\n```\n\nThe above code will print the chessboard with labels.\n\nFor the bonus which requires a loop for printing the chessboard, the entire chessboard is inside a loop structure printing it 11 times:\n\n```python\n# Count the number of prints\nn_prints = 0\n\n# Outer loop\nfor i in range(10):\n    # Printing the entire chessboard and labels within loop structures\n    if n_prints < 10:\n        print_chessboard()\n        n_prints += 1\n```",
+      "reference": "Here\u2019s a Python solution that prints an 8x8 chessboard with labels on all four sides, aligned with the tiles, using only prints inside loops. The outer loop iterates exactly 10 times to satisfy the bonus.\n\n```python\ncols = \"ABCDEFGH\"\nrows = list(range(8, 0, -1))\ncw = 3  # inner width of each cell\n\nfor i in range(10):  # outer loop must run 10 times\n    sep = \"   \" + \"+\" + \"+\".join(\"-\" * cw for _ in cols) + \"+\"\n\n    if i == 0:\n        # top labels\n        header = \"   \" + \"\".join(f\" {c:^{cw}}\" for c in cols) + \" \"\n        print(header)\n        print(sep)\n    elif 1 <= i <= 8:\n        r = rows[i - 1]\n        # row with coordinates (no space between letter and number)\n        row_inner = \"\"\n        for j in range(8):\n            label = f\"{cols[j]}{r}\"\n            row_inner += \"|\" + f\"{label:^{cw}}\"\n        row_inner += \"|\"\n        line = f\"{r:>2} \" + row_inner + f\" {r:>2}\"\n        print(line)\n        print(sep)\n    else:  # i == 9\n        # bottom labels\n        footer = \"   \" + \"\".join(f\" {c:^{cw}}\" for c in cols) + \" \"\n        print(footer)\n```",
       "source": "WildBench",
+      "ground_truth_checklist": [
+        "Does the output correctly display an 8x8 chessboard using loop structures?",
+        "Are the labels on all four sides of the chessboard included and correctly aligned with the tiles?",
+        "Is the entire chessboard and labels printed within loop structures, with no print statements outside the loops?",
+        "Does the outer loop iterate exactly 10 times as specified in the user query?",
+        "Are there no spaces between the letter and number of each tile on the chessboard?",
+        "Does the output create an 8x8 chessboard using loops, without hardcoding the board using print statements?",
+        "Are the labels included on all four sides of the chessboard, and are they aligned with the tiles to form a grid-like structure?",
+        "Are there no spaces between the letter and number of each tile?",
+        "Is the entire chessboard, including labels, printed within loop structures?",
+        "Does the outer loop iterate exactly 10 times?",
+        "Are there no print statements outside of the loops?"
+      ],
       "pipelines": {
-        "tick": {
-          "name": "TICK",
-          "description": "Few-shot checklist generation from input text",
-          "generator_type": "Direct",
+        "ground_truth": {
+          "name": "Ground Truth",
+          "description": "Reference checklist from WildBench",
+          "generator_type": null,
           "uses_reference": false,
           "score": {
-            "passed": 2,
-            "total": 4,
-            "percentage": 50.0,
-            "primary_metric": "pass"
-          },
-          "items": [
-            {
-              "question": "Does the response initiate a conversation by asking questions?",
-              "passed": false,
-              "reasoning": null,
-              "confidence": null,
-              "confidence_level": null,
-              "weight": 100.0
-            },
-            {
-              "question": "Are the questions in the response designed to help identify the user's passion?",
-              "passed": true,
-              "reasoning": null,
-              "confidence": null,
-              "confidence_level": null,
-              "weight": 100.0
-            },
-            {
-              "question": "Does the response indicate that it expects short answers from the user?",
-              "passed": false,
-              "reasoning": null,
-              "confidence": null,
-              "confidence_level": null,
-              "weight": 100.0
-            },
-            {
-              "question": "Is the response supportive and encouraging in tone, appropriate for a coaching context?",
-              "passed": true,
-              "reasoning": null,
-              "confidence": null,
-              "confidence_level": null,
-              "weight": 100.0
-            }
-          ]
-        },
-        "rocketeval": {
-          "name": "RocketEval",
-          "description": "Confidence-aware checklist from input + reference",
-          "generator_type": "Direct",
-          "uses_reference": true,
-          "score": {
-            "passed": 2,
-            "total": 8,
-            "percentage": 24.8,
-            "primary_metric": "normalized"
-          },
-          "items": [
-            {
-              "question": "Does the response include reflective questions related to the user's passions?",
-              "passed": false,
-              "reasoning": null,
-              "confidence": 2.5612814259708025e-06,
-              "confidence_level": "no_10",
-              "weight": 100.0
-            },
-            {
-              "question": "Are the questions structured to encourage short answers?",
-              "passed": false,
-              "reasoning": null,
-              "confidence": 1.4738987025864107e-05,
-              "confidence_level": "no_10",
-              "weight": 100.0
-            },
-            {
-              "question": "Does the response provide a variety of question types (e.g., personal experiences, skills, interests)?",
-              "passed": false,
-              "reasoning": null,
-              "confidence": 2.4300250881885864e-05,
-              "confidence_level": "no_10",
-              "weight": 100.0
-            },
-            {
-              "question": "Are the questions designed to help the user identify patterns or themes in their answers?",
-              "passed": false,
-              "reasoning": null,
-              "confidence": 3.120192441201494e-05,
-              "confidence_level": "no_10",
-              "weight": 100.0
-            },
-            {
-              "question": "Is the tone of the response supportive and encouraging?",
-              "passed": true,
-              "reasoning": null,
-              "confidence": 0.9947798743064415,
-              "confidence_level": "yes_90",
-              "weight": 100.0
-            },
-            {
-              "question": "Does the response avoid leading questions that might bias the user's answers?",
-              "passed": true,
-              "reasoning": null,
-              "confidence": 0.985936372130286,
-              "confidence_level": "yes_90",
-              "weight": 100.0
-            },
-            {
-              "question": "Are there at least 5 distinct questions presented in the response?",
-              "passed": false,
-              "reasoning": null,
-              "confidence": 8.939698311285031e-06,
-              "confidence_level": "no_10",
-              "weight": 100.0
-            },
-            {
-              "question": "Does the response maintain clarity and simplicity in language?",
-              "passed": false,
-              "reasoning": null,
-              "confidence": 0.004070138199119559,
-              "confidence_level": "no_10",
-              "weight": 100.0
-            }
-          ]
-        },
-        "rlcf_candidates_only": {
-          "name": "RLCF Candidates",
-          "description": "Contrastive generation from candidates only",
-          "generator_type": "Contrastive",
-          "uses_reference": false,
-          "score": {
-            "passed": 0,
-            "total": 4,
-            "percentage": 0.0,
+            "passed": 7,
+            "total": 11,
+            "percentage": 63.6,
             "primary_metric": "weighted"
           },
           "items": [
             {
-              "question": "Does the response include a question directed at the user to facilitate the conversation?",
+              "question": "Does the output correctly display an 8x8 chessboard using loop structures?",
               "passed": false,
               "reasoning": null,
               "confidence": null,
@@ -339,45 +414,101 @@
               "weight": 100.0
             },
             {
-              "question": "Does the response encourage short answers from the user?",
+              "question": "Are the labels on all four sides of the chessboard included and correctly aligned with the tiles?",
               "passed": false,
               "reasoning": null,
               "confidence": null,
               "confidence_level": null,
-              "weight": 75.0
+              "weight": 100.0
             },
             {
-              "question": "Is the tone of the response supportive and engaging?",
-              "passed": false,
+              "question": "Is the entire chessboard and labels printed within loop structures, with no print statements outside the loops?",
+              "passed": true,
               "reasoning": null,
               "confidence": null,
               "confidence_level": null,
-              "weight": 50.0
+              "weight": 100.0
             },
             {
-              "question": "Does the response express a willingness to coach and mentor?",
+              "question": "Does the outer loop iterate exactly 10 times as specified in the user query?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Are there no spaces between the letter and number of each tile on the chessboard?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Does the output create an 8x8 chessboard using loops, without hardcoding the board using print statements?",
               "passed": false,
               "reasoning": null,
               "confidence": null,
               "confidence_level": null,
-              "weight": 50.0
+              "weight": 100.0
+            },
+            {
+              "question": "Are the labels included on all four sides of the chessboard, and are they aligned with the tiles to form a grid-like structure?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Are there no spaces between the letter and number of each tile?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Is the entire chessboard, including labels, printed within loop structures?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Does the outer loop iterate exactly 10 times?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Are there no print statements outside of the loops?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
             }
           ]
         },
-        "rlcf_candidate": {
-          "name": "RLCF Candidate",
-          "description": "Contrastive generation with candidates + reference",
-          "generator_type": "Contrastive",
-          "uses_reference": true,
+        "direct": {
+          "name": "Direct",
+          "description": "Checklist generated directly from the input",
+          "generator_type": "Direct",
+          "uses_reference": false,
           "score": {
-            "passed": 1,
-            "total": 5,
-            "percentage": 17.9,
+            "passed": 5,
+            "total": 10,
+            "percentage": 48.9,
             "primary_metric": "weighted"
           },
           "items": [
             {
-              "question": "Does the response include a series of questions for the user to answer?",
+              "question": "Does the solution generate an 8x8 grid of tiles (64 tiles) organized in 8 rows and 8 columns?",
               "passed": false,
               "reasoning": null,
               "confidence": null,
@@ -385,7 +516,7 @@
               "weight": 100.0
             },
             {
-              "question": "Are the questions designed to help the user identify their passion?",
+              "question": "Does the output include labels on all four sides of the board (top, bottom, left, and right)?",
               "passed": false,
               "reasoning": null,
               "confidence": null,
@@ -393,7 +524,23 @@
               "weight": 100.0
             },
             {
-              "question": "Does the response encourage short answers from the user?",
+              "question": "Does the solution use loop structures to construct the board rather than hardcoding individual lines with print statements?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Is there at least one loop used to generate the output?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 95.0
+            },
+            {
+              "question": "Does each tile label consist of a letter immediately followed by a number with no space (e.g., A1), with no spaces between the letter and number anywhere in the board?",
               "passed": false,
               "reasoning": null,
               "confidence": null,
@@ -401,16 +548,622 @@
               "weight": 95.0
             },
             {
-              "question": "Is the tone of the response supportive and encouraging?",
+              "question": "Are the file labels A through H used for the horizontal axis?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 90.0
+            },
+            {
+              "question": "Are the rank labels 1 through 8 used for the vertical axis?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 90.0
+            },
+            {
+              "question": "Are the top and bottom labels horizontally aligned with their corresponding columns of tiles?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 90.0
+            },
+            {
+              "question": "Are both a top label row and a bottom label row present?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 85.0
+            },
+            {
+              "question": "Are both a left label column and a right label column present?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 85.0
+            }
+          ]
+        },
+        "direct_ref": {
+          "name": "Direct + Ref",
+          "description": "Checklist generated from input and reference",
+          "generator_type": "Direct",
+          "uses_reference": true,
+          "score": {
+            "passed": 4,
+            "total": 10,
+            "percentage": 40.9,
+            "primary_metric": "weighted"
+          },
+          "items": [
+            {
+              "question": "Does the output display exactly 8 rows of tiles and 8 columns of tiles (an 8x8 grid)?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Are column labels present at both the top and the bottom of the grid?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 95.0
+            },
+            {
+              "question": "Are row labels present at both the left and the right of each tile row?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 95.0
+            },
+            {
+              "question": "Are the top and bottom column labels aligned with the corresponding tile columns (each label positioned over its column)?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 90.0
+            },
+            {
+              "question": "Are the tile coordinates formatted with no space between the letter and number (e.g., A8, not A 8)?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 90.0
+            },
+            {
+              "question": "Does the solution avoid hardcoding the board by printing prewritten lines and instead generate the board content using loops?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 95.0
+            },
+            {
+              "question": "Are the column labels the letters A through H in left-to-right order?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 80.0
+            },
+            {
+              "question": "Are the row labels the numbers 8 through 1 in top-to-bottom order?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 80.0
+            },
+            {
+              "question": "Are there exactly 64 tile identifiers printed within the grid (one per cell)?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 85.0
+            },
+            {
+              "question": "Are the cell widths consistent across columns so that the grid\u2019s columns align uniformly?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 70.0
+            }
+          ]
+        },
+        "contrastive": {
+          "name": "Contrastive",
+          "description": "Checklist generated by contrasting candidate outputs",
+          "generator_type": "Contrastive",
+          "uses_reference": false,
+          "score": {
+            "passed": 5,
+            "total": 7,
+            "percentage": 67.8,
+            "primary_metric": "weighted"
+          },
+          "items": [
+            {
+              "question": "Does the program generate an 8x8 grid of tiles?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Are labels present on all four sides (column labels on top and bottom, row labels on left and right)?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 95.0
+            },
+            {
+              "question": "Are the top and bottom column labels horizontally aligned with the corresponding tile columns?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 85.0
+            },
+            {
+              "question": "Are tile coordinates formatted without spaces between the letter and number wherever shown (e.g., \"a1\")?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 70.0
+            },
+            {
+              "question": "Does the solution use loop(s) to construct the output rather than hardcoding lines with print statements?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Are all print/output statements placed inside loop structures?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 65.0
+            },
+            {
+              "question": "Does the outermost loop iterate exactly 10 times?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 60.0
+            }
+          ]
+        },
+        "contrastive_ref": {
+          "name": "Contrastive + Ref",
+          "description": "Checklist generated by contrasting candidates with reference",
+          "generator_type": "Contrastive",
+          "uses_reference": true,
+          "score": {
+            "passed": 4,
+            "total": 7,
+            "percentage": 55.7,
+            "primary_metric": "weighted"
+          },
+          "items": [
+            {
+              "question": "Does the output contain an 8-by-8 grid of tiles (exactly 8 columns and 8 rows)?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Are the column labels A through H present on both the top and the bottom edges?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Are the row labels 8 through 1 present on both the left and the right edges?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Are the tile coordinate labels formatted with no space between the letter and number (e.g., A8, not A 8)?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 95.0
+            },
+            {
+              "question": "Is the chessboard generated using loop structures rather than hardcoded print statements?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 95.0
+            },
+            {
+              "question": "Are the top and bottom labels horizontally aligned with their corresponding columns/tiles so the layout forms a clean grid?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 90.0
+            },
+            {
+              "question": "Bonus: Does the outermost loop iterate exactly 10 times?",
               "passed": true,
               "reasoning": null,
               "confidence": null,
               "confidence_level": null,
               "weight": 75.0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "example-2",
+      "label": "Brainstorming",
+      "input": "give me options for full names, but don\u2019t repeat the same letters twice.",
+      "target": "Sure, creating names where each letter is used only once is quite a puzzle, but here are a few examples:\n\n1. Alfredo B. Cynquist\n2. Brenda Joy G. Klimp\n3. Charles Quinton Duv\n4. David Leon Brisk Q.\n5. Eugene Max Cyril Toph\n6. Fiona Stacey B. Druqw\n7. Grant Felix C. J. Bodhi\n8. Quinta Melody Brook Hvs\n9. Jack Deon Q. Gilmurth\n10. Krista Joy Blinq Fumed\n\nNote that these names are designed to adhere to your criteria rather than to reflect common or easily-pronounceable names. With each full name, care is taken to avoid repeating any letter, which greatly limits the pool of usable letters for each subsequent part of the name.",
+      "reference": "Here are isogram full names (no letter repeats across the whole first+last name):\n\n- Monique Schwarz\n- Beatriz Wolf\n- Harvey Dubczik\n- Jax Lundqvist\n- Zohaib Trexly\n- Quincy Rowe\n- Sanjiv Buckler\n- Felix Vaughn\n- Aiden Volk\n- Quade Styrbom\n- Gavin Drobzyk\n- Mikael Grundzow\n- Tomas Verlyn\n- Rudolf Banksy\n- Chloe Marsvind\n- Xenia Dubrovsky\n- Oleg Szymbart\n- Diego Kvarnby\n- Hector Vladskyn\n- Yasmin Delbruck\n\nWant them in a specific style, culture, or gender presentation? I can tailor more.",
+      "source": "WildBench",
+      "ground_truth_checklist": [
+        "Do the provided full names avoid repeating any letters?",
+        "Are the names realistic and could they be used in real-world contexts?",
+        "Do the names include a first name, middle name, and last name?",
+        "Is there a diverse variety of names in terms of cultural or linguistic origin?",
+        "Are the names gender-neutral, or is there a balance of traditionally male and female names?",
+        "Does the output provide a list of full names that don't repeat letters?",
+        "Are the names in the output creative and diverse, using a wide variety of letters from the alphabet?",
+        "Do the names in the output sound plausible as real names that people might have, even if uncommon?",
+        "Does the output explain the challenge of creating names with all unique letters given the 26-letter English alphabet?",
+        "Does the output provide at least 5 example names meeting the criteria?"
+      ],
+      "pipelines": {
+        "ground_truth": {
+          "name": "Ground Truth",
+          "description": "Reference checklist from WildBench",
+          "generator_type": null,
+          "uses_reference": false,
+          "score": {
+            "passed": 2,
+            "total": 10,
+            "percentage": 20.0,
+            "primary_metric": "weighted"
+          },
+          "items": [
+            {
+              "question": "Do the provided full names avoid repeating any letters?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
             },
             {
-              "question": "Does the response provide a clear structure for the conversation?",
+              "question": "Are the names realistic and could they be used in real-world contexts?",
               "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Do the names include a first name, middle name, and last name?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Is there a diverse variety of names in terms of cultural or linguistic origin?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Are the names gender-neutral, or is there a balance of traditionally male and female names?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Does the output provide a list of full names that don't repeat letters?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Are the names in the output creative and diverse, using a wide variety of letters from the alphabet?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Do the names in the output sound plausible as real names that people might have, even if uncommon?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Does the output explain the challenge of creating names with all unique letters given the 26-letter English alphabet?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Does the output provide at least 5 example names meeting the criteria?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            }
+          ]
+        },
+        "direct": {
+          "name": "Direct",
+          "description": "Checklist generated directly from the input",
+          "generator_type": "Direct",
+          "uses_reference": false,
+          "score": {
+            "passed": 3,
+            "total": 6,
+            "percentage": 56.6,
+            "primary_metric": "weighted"
+          },
+          "items": [
+            {
+              "question": "Does the response provide at least two distinct options (i.e., two or more separate full names)?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 90.0
+            },
+            {
+              "question": "Is each option a full name consisting of at least a first and a last name (two or more words)?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 95.0
+            },
+            {
+              "question": "For each option, does no letter appear more than once across the entire full name (case-insensitive, ignoring spaces and punctuation)?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Are all listed options unique (no duplicate full names)?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 50.0
+            },
+            {
+              "question": "Does the response primarily present the list of name options without extra explanatory text?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 40.0
+            },
+            {
+              "question": "Are the names composed only of alphabetic characters with optional standard name punctuation (spaces, hyphens, apostrophes)?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 40.0
+            }
+          ]
+        },
+        "direct_ref": {
+          "name": "Direct + Ref",
+          "description": "Checklist generated from input and reference",
+          "generator_type": "Direct",
+          "uses_reference": true,
+          "score": {
+            "passed": 4,
+            "total": 6,
+            "percentage": 62.5,
+            "primary_metric": "weighted"
+          },
+          "items": [
+            {
+              "question": "Does the response provide at least two distinct full name options?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 90.0
+            },
+            {
+              "question": "Does every provided option contain at least a first and a last name (i.e., at least two words)?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 95.0
+            },
+            {
+              "question": "For every provided option, are all alphabetic letters unique when case is ignored and non-letters (such as spaces, hyphens, and apostrophes) are excluded?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Are all provided options free of digits, emojis, and other non-name characters beyond spaces, hyphens, or apostrophes?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 50.0
+            },
+            {
+              "question": "Are the options presented so each name is clearly separable (e.g., by bullets or line breaks)?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 35.0
+            },
+            {
+              "question": "Are all provided full-name options unique (no exact duplicates within the list)?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 30.0
+            }
+          ]
+        },
+        "contrastive": {
+          "name": "Contrastive",
+          "description": "Checklist generated by contrasting candidate outputs",
+          "generator_type": "Contrastive",
+          "uses_reference": false,
+          "score": {
+            "passed": 3,
+            "total": 5,
+            "percentage": 63.9,
+            "primary_metric": "weighted"
+          },
+          "items": [
+            {
+              "question": "Does the response provide multiple options (at least two)?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 95.0
+            },
+            {
+              "question": "Are all provided options full names with at least a first and last name?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "For each full name, are all letters unique within that name (case-insensitive, ignoring spaces and punctuation)?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Are all provided full-name options unique (no duplicates)?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 70.0
+            },
+            {
+              "question": "Are the names composed only of alphabetic characters with standard separators (spaces, hyphens, apostrophes)?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 50.0
+            }
+          ]
+        },
+        "contrastive_ref": {
+          "name": "Contrastive + Ref",
+          "description": "Checklist generated by contrasting candidates with reference",
+          "generator_type": "Contrastive",
+          "uses_reference": true,
+          "score": {
+            "passed": 3,
+            "total": 5,
+            "percentage": 50.6,
+            "primary_metric": "weighted"
+          },
+          "items": [
+            {
+              "question": "Does the response provide more than one option (i.e., at least two names)?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 90.0
+            },
+            {
+              "question": "Is each option a full name containing at least a first and a last name?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 95.0
+            },
+            {
+              "question": "For every provided full name, when ignoring spaces, punctuation, and case, does each letter appear no more than once across the entire name?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Are all provided full-name options distinct from one another?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 60.0
+            },
+            {
+              "question": "Is the main content comprised of the requested names presented clearly (e.g., as a list or clearly separated entries)?",
+              "passed": true,
               "reasoning": null,
               "confidence": null,
               "confidence_level": null,
@@ -421,27 +1174,39 @@
       }
     },
     {
-      "id": "example-2",
-      "label": "Wordplay & Brainstorming",
-      "input": "give me options for full names, but don\u2019t repeat the same letters twice.",
-      "target": "Creating full names that include as many unique letters from the alphabet as possible, without repeating any letter, can be challenging but fun. Keep in mind that the more common the name, the harder it will be to incorporate a wider variety of letters. Here are some examples of names that use many letters of the alphabet, each letter once:\n\n1. Alexander Quincy Gobit\n2. Benjamina Christof D'Loux\n3. Dominique Veralph Blyth\n4. Ezekial Quon Bradfisch\n5. Jasper Quinton Xavier\n6. Xavier Montgomery Blaze\n7. Felicity Dawn Q. Borugh\n8. Quentin Zachary Klimbsdorf\n9. Veronica Stacey Dahlbump\n10. Zephyr Dominica Blanquet\n\nRemember that with the English alphabet having 26 letters, it's impossible to have a name that uses all the letters without repeating any unless you use initials and surnames creatively or invent names that aren't necessarily in common use.",
-      "reference": "Sure, creating names where each letter is used only once is quite a puzzle, but here are a few examples:\n\n1. Alfredo B. Cynquist\n2. Brenda Joy G. Klimp\n3. Charles Quinton Duv\n4. David Leon Brisk Q.\n5. Eugene Max Cyril Toph\n6. Fiona Stacey B. Druqw\n7. Grant Felix C. J. Bodhi\n8. Quinta Melody Brook Hvs\n9. Jack Deon Q. Gilmurth\n10. Krista Joy Blinq Fumed\n\nNote that these names are designed to adhere to your criteria rather than to reflect common or easily-pronounceable names. With each full name, care is taken to avoid repeating any letter, which greatly limits the pool of usable letters for each subsequent part of the name.",
+      "id": "example-3",
+      "label": "Reasoning",
+      "input": "When cost and demand are stable over time in an industry, repetition of Prisoners' Dilemma situations\nA) can yield cooperative outcomes because firms can explicitly collude to set prices.\nB) can yield cooperative outcomes even when firms do not explicitly collude to set prices.\nC) cooperative or non-cooperative outcomes may occur, but cooperation is harder than when the market is\nunstable.\nD) will tend to yield non-cooperative outcomes.",
+      "target": "B) can yield cooperative outcomes even when firms do not explicitly collude to set prices.\n\nWhen cost and demand are stable over time in an industry, firms may engage in repeated Prisoner's Dilemma scenarios. The repeated interaction can lead to a tacit understanding or an implicit collusion among firms, allowing them to anticipate each other's behavior and opt for cooperative strategies to maximize long-term profits rather than pursuing aggressive competition in each round.\n\nFirms can learn to trust that their competitors will also cooperate to maintain high prices and avoid price wars. Such cooperative outcomes can emerge even without any explicit communication or formal collusion, as the firms adjust their strategies based on past behavior and the expectation of continued interactions in the future. This situation is often referred to as a repeated, or iterated, Prisoner's Dilemma, where the shadow of the future influences current decisions.",
+      "reference": "B) can yield cooperative outcomes even when firms do not explicitly collude to set prices.\n\nReason: In a repeated Prisoners\u2019 Dilemma with stable costs and demand, firms can sustain tacit cooperation through trigger strategies and credible punishment for deviation, even without explicit collusion. Stability makes monitoring and forecasting rivals\u2019 behavior easier, facilitating such outcomes.",
       "source": "WildBench",
+      "ground_truth_checklist": [
+        "Does the AI output correctly identify the option that explains the outcome of repeated Prisoners' Dilemma situations in a stable cost and demand industry?",
+        "Does the AI output provide a clear explanation or reasoning for the chosen option?",
+        "Does the AI output maintain neutrality and avoid making unsupported assumptions about the behavior of firms in the industry?",
+        "Is the AI output concise and directly related to the query without including irrelevant information?",
+        "Does the AI output use appropriate economic terminology relevant to the Prisoners' Dilemma and market stability?",
+        "Does the AI output correctly identify the scenario as a repeated Prisoner's Dilemma situation?",
+        "Does the AI output accurately explain the potential outcomes (cooperative or non-cooperative) in a repeated Prisoner's Dilemma situation when costs and demand are stable over time?",
+        "Does the AI output provide a clear explanation of why a particular outcome (cooperative or non-cooperative) is more likely to occur in the given scenario?",
+        "Does the AI output compare the likelihood of cooperative outcomes in stable markets versus unstable markets in the context of repeated Prisoner's Dilemma situations?",
+        "Is the AI output free from any factual errors or inconsistencies in its explanation of the repeated Prisoner's Dilemma situation and its outcomes?"
+      ],
       "pipelines": {
-        "tick": {
-          "name": "TICK",
-          "description": "Few-shot checklist generation from input text",
-          "generator_type": "Direct",
+        "ground_truth": {
+          "name": "Ground Truth",
+          "description": "Reference checklist from WildBench",
+          "generator_type": null,
           "uses_reference": false,
           "score": {
-            "passed": 3,
-            "total": 4,
-            "percentage": 75.0,
-            "primary_metric": "pass"
+            "passed": 7,
+            "total": 10,
+            "percentage": 70.0,
+            "primary_metric": "weighted"
           },
           "items": [
             {
-              "question": "Does the response provide options for full names?",
+              "question": "Does the AI output correctly identify the option that explains the outcome of repeated Prisoners' Dilemma situations in a stable cost and demand industry?",
               "passed": true,
               "reasoning": null,
               "confidence": null,
@@ -449,7 +1214,23 @@
               "weight": 100.0
             },
             {
-              "question": "Does the response ensure that no letters are repeated in any of the provided names?",
+              "question": "Does the AI output provide a clear explanation or reasoning for the chosen option?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Does the AI output maintain neutrality and avoid making unsupported assumptions about the behavior of firms in the industry?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Is the AI output concise and directly related to the query without including irrelevant information?",
               "passed": false,
               "reasoning": null,
               "confidence": null,
@@ -457,7 +1238,7 @@
               "weight": 100.0
             },
             {
-              "question": "Does the response contain a variety of full names?",
+              "question": "Does the AI output use appropriate economic terminology relevant to the Prisoners' Dilemma and market stability?",
               "passed": true,
               "reasoning": null,
               "confidence": null,
@@ -465,7 +1246,39 @@
               "weight": 100.0
             },
             {
-              "question": "Is the response clear and easy to understand?",
+              "question": "Does the AI output correctly identify the scenario as a repeated Prisoner's Dilemma situation?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Does the AI output accurately explain the potential outcomes (cooperative or non-cooperative) in a repeated Prisoner's Dilemma situation when costs and demand are stable over time?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Does the AI output provide a clear explanation of why a particular outcome (cooperative or non-cooperative) is more likely to occur in the given scenario?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Does the AI output compare the likelihood of cooperative outcomes in stable markets versus unstable markets in the context of repeated Prisoner's Dilemma situations?",
+              "passed": false,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Is the AI output free from any factual errors or inconsistencies in its explanation of the repeated Prisoner's Dilemma situation and its outcomes?",
               "passed": true,
               "reasoning": null,
               "confidence": null,
@@ -474,136 +1287,190 @@
             }
           ]
         },
-        "rocketeval": {
-          "name": "RocketEval",
-          "description": "Confidence-aware checklist from input + reference",
+        "direct": {
+          "name": "Direct",
+          "description": "Checklist generated directly from the input",
           "generator_type": "Direct",
-          "uses_reference": true,
+          "uses_reference": false,
           "score": {
-            "passed": 2,
+            "passed": 7,
             "total": 7,
-            "percentage": 24.8,
-            "primary_metric": "normalized"
+            "percentage": 100.0,
+            "primary_metric": "weighted"
           },
           "items": [
             {
-              "question": "Does the response provide options for full names?",
-              "passed": false,
-              "reasoning": null,
-              "confidence": 0.06754675120600638,
-              "confidence_level": "no_10",
-              "weight": 100.0
-            },
-            {
-              "question": "Does each name in the response avoid repeating any letters?",
-              "passed": false,
-              "reasoning": null,
-              "confidence": 0.0,
-              "confidence_level": "no_10",
-              "weight": 100.0
-            },
-            {
-              "question": "Are the names in the response unique and not commonly used?",
-              "passed": false,
-              "reasoning": null,
-              "confidence": 0.0,
-              "confidence_level": "no_10",
-              "weight": 100.0
-            },
-            {
-              "question": "Is the format of each name consistent with typical full name structures?",
+              "question": "Does the response select exactly one of the provided options (A, B, C, or D)?",
               "passed": true,
               "reasoning": null,
-              "confidence": 0.7310585317540644,
-              "confidence_level": "yes_70",
-              "weight": 100.0
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 95.0
             },
             {
-              "question": "Does the response include a sufficient number of name options?",
+              "question": "Is the selected option B?",
               "passed": true,
               "reasoning": null,
-              "confidence": 0.9241418199787564,
-              "confidence_level": "yes_90",
+              "confidence": null,
+              "confidence_level": null,
               "weight": 100.0
             },
             {
-              "question": "Is the response clear and understandable?",
-              "passed": false,
+              "question": "Does the response avoid stating or implying that explicit collusion is required for cooperation to occur?",
+              "passed": true,
               "reasoning": null,
-              "confidence": 0.014063627043245474,
-              "confidence_level": "no_10",
-              "weight": 100.0
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 70.0
             },
             {
-              "question": "Does the response adhere to the instruction of not repeating letters in any part of the names?",
-              "passed": false,
+              "question": "If an explanation is provided, is it consistent with repeated Prisoners' Dilemma enabling tacit cooperation (e.g., via future interactions/trigger strategies) under stable conditions?",
+              "passed": true,
               "reasoning": null,
-              "confidence": 0.0001584361671713235,
-              "confidence_level": "no_10",
-              "weight": 100.0
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 60.0
+            },
+            {
+              "question": "Does the response avoid introducing options other than A, B, C, or D?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 60.0
+            },
+            {
+              "question": "Is the response focused on the scenario with stable cost and demand over time (i.e., does not base the answer on market instability)?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 55.0
+            },
+            {
+              "question": "Is the response free of contradictions (e.g., not endorsing both cooperative and strictly non-cooperative outcomes as the definitive answer)?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 50.0
             }
           ]
         },
-        "rlcf_candidates_only": {
-          "name": "RLCF Candidates",
-          "description": "Contrastive generation from candidates only",
+        "direct_ref": {
+          "name": "Direct + Ref",
+          "description": "Checklist generated from input and reference",
+          "generator_type": "Direct",
+          "uses_reference": true,
+          "score": {
+            "passed": 6,
+            "total": 6,
+            "percentage": 100.0,
+            "primary_metric": "weighted"
+          },
+          "items": [
+            {
+              "question": "Does the response explicitly select exactly one of the provided options (A, B, C, or D)?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 95.0
+            },
+            {
+              "question": "Is the selected option B?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "Is the selected option stated unambiguously (e.g., includes the letter B or the exact text of option B)?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 85.0
+            },
+            {
+              "question": "If an explanation is included, does it attribute potential cooperation to repeated interaction/tacit collusion mechanisms (e.g., trigger strategies or credible punishment) rather than explicit collusion?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 60.0
+            },
+            {
+              "question": "If an explanation is included, does it avoid claiming that explicit collusion is required for cooperation?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 55.0
+            },
+            {
+              "question": "If an explanation is included, does it avoid contradicting the chosen option (e.g., by asserting that stability tends to yield non-cooperative outcomes)?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 70.0
+            }
+          ]
+        },
+        "contrastive": {
+          "name": "Contrastive",
+          "description": "Checklist generated by contrasting candidate outputs",
           "generator_type": "Contrastive",
           "uses_reference": false,
           "score": {
-            "passed": 2,
-            "total": 4,
-            "percentage": 41.7,
+            "passed": 3,
+            "total": 3,
+            "percentage": 100.0,
             "primary_metric": "weighted"
           },
           "items": [
             {
-              "question": "Do all full names provided contain unique letters without any repetitions?",
-              "passed": false,
+              "question": "Does the response select exactly one of the provided options (A, B, C, or D)?",
+              "passed": true,
               "reasoning": null,
               "confidence": null,
               "confidence_level": null,
               "weight": 100.0
             },
             {
-              "question": "Are the names presented in a clear and organized list format?",
+              "question": "Is the selected option B?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 100.0
+            },
+            {
+              "question": "If an explanation is included, does it state that repeated interactions can sustain cooperative outcomes without explicit collusion (tacit collusion)?",
               "passed": true,
               "reasoning": null,
               "confidence": null,
               "confidence_level": null,
               "weight": 75.0
-            },
-            {
-              "question": "Is each full name composed of a first name and a last name?",
-              "passed": false,
-              "reasoning": null,
-              "confidence": null,
-              "confidence_level": null,
-              "weight": 75.0
-            },
-            {
-              "question": "Are there at least five unique full names provided?",
-              "passed": true,
-              "reasoning": null,
-              "confidence": null,
-              "confidence_level": null,
-              "weight": 50.0
             }
           ]
         },
-        "rlcf_candidate": {
-          "name": "RLCF Candidate",
-          "description": "Contrastive generation with candidates + reference",
+        "contrastive_ref": {
+          "name": "Contrastive + Ref",
+          "description": "Checklist generated by contrasting candidates with reference",
           "generator_type": "Contrastive",
           "uses_reference": true,
           "score": {
-            "passed": 3,
-            "total": 5,
-            "percentage": 64.3,
+            "passed": 4,
+            "total": 4,
+            "percentage": 100.0,
             "primary_metric": "weighted"
           },
           "items": [
             {
-              "question": "Does the response provide full names as requested?",
+              "question": "Does the response select option B as the answer?",
               "passed": true,
               "reasoning": null,
               "confidence": null,
@@ -611,36 +1478,28 @@
               "weight": 100.0
             },
             {
-              "question": "Does each full name contain unique letters without any repetitions?",
-              "passed": false,
-              "reasoning": null,
-              "confidence": null,
-              "confidence_level": null,
-              "weight": 100.0
-            },
-            {
-              "question": "Are there at least 5 full names provided in the response?",
+              "question": "Does the response clearly select exactly one option from A, B, C, or D?",
               "passed": true,
               "reasoning": null,
               "confidence": null,
               "confidence_level": null,
-              "weight": 75.0
+              "weight": 95.0
             },
             {
-              "question": "Is the format of the names consistent (e.g., first name followed by last name)?",
+              "question": "If an explanation is provided, is it consistent with the idea that repeated interactions under stable conditions can sustain tacit cooperation without explicit collusion?",
+              "passed": true,
+              "reasoning": null,
+              "confidence": null,
+              "confidence_level": null,
+              "weight": 60.0
+            },
+            {
+              "question": "Is the chosen option communicated unambiguously (e.g., by giving the letter B or the exact text of option B)?",
               "passed": true,
               "reasoning": null,
               "confidence": null,
               "confidence_level": null,
               "weight": 50.0
-            },
-            {
-              "question": "Are the names appropriate and suitable for general use?",
-              "passed": false,
-              "reasoning": null,
-              "confidence": null,
-              "confidence_level": null,
-              "weight": 25.0
             }
           ]
         }

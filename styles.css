@@ -427,6 +427,34 @@ section {
   gap: 0.6rem;
 }
 
+.other-features {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--accent);
+  margin-top: 1rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.other-features-title {
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.other-features-list {
+  list-style: disc;
+  padding-left: 1.25rem;
+  margin: 0;
+}
+
+.other-features-list li {
+  margin-bottom: 0.15rem;
+  color: var(--text);
+  font-family: var(--font-body, sans-serif);
+  font-weight: 400;
+}
+
 /* ── Architecture ── */
 .architecture-figure {
   text-align: center;
@@ -438,6 +466,8 @@ section {
   border: none;
   padding: 0;
   background: transparent;
+  border-radius: 2.25rem;
+  /* box-shadow: 0 2px 16px rgba(0, 0, 0, 0.12); */
 }
 
 .architecture-tags {
@@ -457,6 +487,16 @@ section {
 }
 
 /* ── Demo Placeholder ── */
+.demo-video {
+  width: 100%;
+  max-width: 600px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  display: block;
+  margin: 0 auto;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
 .demo-slot {
   background: var(--surface-manila);
   border: 2px dashed rgba(0, 0, 0, 0.12);
@@ -481,6 +521,16 @@ section {
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--text-muted);
+}
+
+.examples-link {
+  display: block;
+  text-align: center;
+  margin-top: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--accent);
 }
 
 /* ── Footer ── */

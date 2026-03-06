@@ -1,5 +1,27 @@
 /* examples.css — styles for the examples/compare page, extending styles.css */
 
+.examples-content {
+  padding-top: 0.5rem;
+}
+
+.examples-hero-title {
+  font-family: var(--font-body);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0 0 0.25rem;
+}
+
+.examples-hero-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: 0 0 1rem;
+}
+
+.examples-hero-desc a {
+  color: var(--accent);
+}
+
 :root {
   --success: #16A34A;
   --success-light: #F0FDF4;
@@ -16,6 +38,7 @@
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
+  margin-top: 0.5rem;
   margin-bottom: 1.5rem;
 }
 
@@ -312,6 +335,19 @@
   color: var(--text);
 }
 
+.checklist-meta {
+  margin-top: 0.25rem;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.checklist-weight {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
 .checklist-reasoning {
   font-size: 0.75rem;
   color: var(--text-muted);
@@ -319,17 +355,8 @@
   line-height: 1.5;
 }
 
-.checklist-weight {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  display: inline-block;
-  margin-right: 0.5rem;
-}
-
 .checklist-confidence {
   font-size: 0.75rem;
-  display: inline-block;
 }
 
 /* ── Responsive ── */

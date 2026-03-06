@@ -21,7 +21,6 @@
         <span class="nav-brand-text">AutoChecklist</span>
       </a>
       <ul class="nav-links">
-        <li><a href="examples.html">Examples</a></li>
         <li><a href="docs/">Docs</a></li>
         <li><a href="/">Paper</a></li>
         <li><a href="https://github.com/ChicagoHAI/AutoChecklist">GitHub</a></li>
@@ -52,15 +51,47 @@
         <!-- <p class="section-label">Demo</p> -->
         <!-- <h2 class="section-title">See it in action</h2> -->
       </div>
-      <div class="demo-slot">
-        <span class="demo-slot-icon">&#9654;</span>
-        <span class="demo-slot-text">Demo video coming soon</span>
-      </div>
+      <video class="demo-video" autoplay muted loop playsinline controls>
+        <source src="assets/ac_demo-loop.mp4" type="video/mp4">
+      </video>
+      <a href="examples.html" class="examples-link">&rarr; See examples</a>
     </div>
   </section>
 
   <hr class="divider">
 
+    <!-- Quickstart -->
+    <section class="quickstart">
+      <div class="container">
+        <div class="section-header section-header--center">
+          <p class="section-label">Quickstart</p>
+          <!-- <h2 class="section-title">Up and running in minutes</h2> -->
+        </div>
+        <div class="quickstart-content">
+          <div class="code-block">
+  <code><span class="code-prompt">$ </span>uv pip install autochecklist</code>
+          </div>
+          <!-- <div class="code-block">
+  <code><span class="code-keyword">from</span> autochecklist <span class="code-keyword">import</span> DirectGenerator, ChecklistScorer
+  
+  <span class="code-comment"># Generate a checklist for your evaluation task</span>
+  generator = <span class="code-function">DirectGenerator</span>()
+  checklist = generator.<span class="code-function">generate</span>(
+      task=<span class="code-string">"Evaluate the quality of this summary"</span>,
+      input_text=<span class="code-string">"The original article about climate change..."</span>,
+  )
+  
+  <span class="code-comment"># Score a response against the checklist</span>
+  scorer = <span class="code-function">ChecklistScorer</span>()
+  result = scorer.<span class="code-function">score</span>(checklist=checklist, response=<span class="code-string">"The summary text..."</span>)</code>
+          </div>  -->
+          <a href="docs/getting-started/installation/" class="quickstart-link">
+            Full installation guide &#8594;
+          </a>
+        </div>
+      </div>
+  
+    <!-- <hr class="divider"> -->
   
 
 
@@ -81,59 +112,20 @@
           Instance-level: one checklist per input. Corpus-level: one checklist for all inputs.
         </figcaption> -->
       </figure>
+      <div class="other-features">
+        <p class="other-features-title">Other Features</p>
+        <ul class="other-features-list">
+          <li>2 instance-level and 3 corpus-level generator abstractions</li>
+          <li>8+ built-in methods from literature</li>
+          <li>Multi-provider LLM backend (OpenAI, OpenRouter, vLLM)</li>
+          <li>CLI and local UI</li>
+        </ul>
+      </div>
     </div>
   </section>
 
-  <hr class="divider">
 
-  <!-- Quickstart -->
-  <section class="quickstart">
-    <div class="container">
-      <div class="section-header section-header--center">
-        <p class="section-label">Quickstart & Examples</p>
-        <!-- <h2 class="section-title">Up and running in minutes</h2> -->
-      </div>
-      <div class="quickstart-content">
-        <div class="code-block">
-<code><span class="code-prompt">$ </span>uv pip install autochecklist</code>
-        </div>
-        <!-- <div class="code-block">
-<code><span class="code-keyword">from</span> autochecklist <span class="code-keyword">import</span> DirectGenerator, ChecklistScorer
 
-<span class="code-comment"># Generate a checklist for your evaluation task</span>
-generator = <span class="code-function">DirectGenerator</span>()
-checklist = generator.<span class="code-function">generate</span>(
-    task=<span class="code-string">"Evaluate the quality of this summary"</span>,
-    input_text=<span class="code-string">"The original article about climate change..."</span>,
-)
-
-<span class="code-comment"># Score a response against the checklist</span>
-scorer = <span class="code-function">ChecklistScorer</span>()
-result = scorer.<span class="code-function">score</span>(checklist=checklist, response=<span class="code-string">"The summary text..."</span>)</code>
-        </div>  -->
-        <a href="docs/getting-started/installation/" class="quickstart-link">
-          See full installation guide &#8594;
-        </a>
-      </div>
-    </div>
-  <!-- </section>
-
- 
-  <section class="examples"> -->
-    <div class="container">
-      <div class="section-header section-header--center">
-        <!-- <p class="section-label">Examples</p> -->
-        <!-- <h2 class="section-title">Inputs and generated checklists</h2> -->
-      </div>
-      <a href="examples.html" class="demo-slot" style="border-style: solid; text-decoration: none; display: block;">
-        <span class="demo-slot-icon">&#9776;</span>
-        <span class="demo-slot-text">Pipeline Comparison Examples</span>
-        <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-secondary); display: block; margin-top: 0.25rem;">See how TICK, RocketEval, and RLCF evaluate the same tasks &rarr;</span>
-      </a>
-    </div>
-  </section>
-
-  <hr class="divider">
 
   <!-- Footer -->
   <footer class="footer">
