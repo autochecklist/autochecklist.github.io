@@ -60,21 +60,6 @@
     let examplesData = null;
     let currentExample = 0;
 
-    // Pipeline groups defined in renderMethodCards
-
-    const TYPE_LABELS = {
-      ground_truth: '',
-      direct: 'Direct',
-      direct_ref: 'Direct + Ref',
-      contrastive: 'Contrastive',
-      contrastive_ref: 'Contrastive + Ref'
-    };
-
-function escapeHtml(str) {
-      if (!str) return '';
-      return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-    }
-
     function getConfidenceLabel(confidence) {
       if (confidence > 0.8) return { label: 'High confidence', color: 'var(--success)' };
       if (confidence > 0.6) return { label: 'Moderate confidence', color: 'var(--success)' };
