@@ -2212,6 +2212,50 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#autochecklist.ChecklistResponse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ChecklistResponse
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#autochecklist.WeightedChecklistResponse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WeightedChecklistResponse
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#autochecklist.CategorizedChecklistResponse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CategorizedChecklistResponse
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#autochecklist.GeneratedCategorizedQuestion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GeneratedCategorizedQuestion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#autochecklist.DirectGenerator" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4851,6 +4895,234 @@ Key order matches the first occurrence of each category.</p>
 <a id="__codelineno-0-250" name="__codelineno-0-250"></a>    <span class="n">dimension</span><span class="p">:</span> <span class="nb">str</span>
 <a id="__codelineno-0-251" name="__codelineno-0-251"></a>    <span class="n">attributes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
 <a id="__codelineno-0-252" name="__codelineno-0-252"></a>    <span class="n">sample_context</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="autochecklist.ChecklistResponse" class="doc doc-heading">
+            <code>ChecklistResponse</code>
+
+
+<a href="#autochecklist.ChecklistResponse" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="pydantic.BaseModel">BaseModel</span></code></p>
+
+
+
+        <p>LLM response schema for unweighted checklist generation (TICK, RocketEval).</p>
+
+
+
+
+
+
+
+
+              <details class="mkdocstrings-source">
+                <summary>Source code in <code>autochecklist/models.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-269">269</a></span>
+<span class="normal"><a href="#__codelineno-0-270">270</a></span>
+<span class="normal"><a href="#__codelineno-0-271">271</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-269" name="__codelineno-0-269"></a><span class="k">class</span><span class="w"> </span><span class="nc">ChecklistResponse</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<a id="__codelineno-0-270" name="__codelineno-0-270"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;LLM response schema for unweighted checklist generation (TICK, RocketEval).&quot;&quot;&quot;</span>
+<a id="__codelineno-0-271" name="__codelineno-0-271"></a>    <span class="n">questions</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">GeneratedQuestion</span><span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="autochecklist.WeightedChecklistResponse" class="doc doc-heading">
+            <code>WeightedChecklistResponse</code>
+
+
+<a href="#autochecklist.WeightedChecklistResponse" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="pydantic.BaseModel">BaseModel</span></code></p>
+
+
+
+        <p>LLM response schema for weighted checklist generation (RLCF).</p>
+
+
+
+
+
+
+
+
+              <details class="mkdocstrings-source">
+                <summary>Source code in <code>autochecklist/models.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-274">274</a></span>
+<span class="normal"><a href="#__codelineno-0-275">275</a></span>
+<span class="normal"><a href="#__codelineno-0-276">276</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-274" name="__codelineno-0-274"></a><span class="k">class</span><span class="w"> </span><span class="nc">WeightedChecklistResponse</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<a id="__codelineno-0-275" name="__codelineno-0-275"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;LLM response schema for weighted checklist generation (RLCF).&quot;&quot;&quot;</span>
+<a id="__codelineno-0-276" name="__codelineno-0-276"></a>    <span class="n">questions</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">GeneratedWeightedQuestion</span><span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="autochecklist.CategorizedChecklistResponse" class="doc doc-heading">
+            <code>CategorizedChecklistResponse</code>
+
+
+<a href="#autochecklist.CategorizedChecklistResponse" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="pydantic.BaseModel">BaseModel</span></code></p>
+
+
+
+        <p>LLM response schema for categorized checklist generation (OpenRubrics CRG).</p>
+
+
+
+
+
+
+
+
+              <details class="mkdocstrings-source">
+                <summary>Source code in <code>autochecklist/models.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-284">284</a></span>
+<span class="normal"><a href="#__codelineno-0-285">285</a></span>
+<span class="normal"><a href="#__codelineno-0-286">286</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-284" name="__codelineno-0-284"></a><span class="k">class</span><span class="w"> </span><span class="nc">CategorizedChecklistResponse</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<a id="__codelineno-0-285" name="__codelineno-0-285"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;LLM response schema for categorized checklist generation (OpenRubrics CRG).&quot;&quot;&quot;</span>
+<a id="__codelineno-0-286" name="__codelineno-0-286"></a>    <span class="n">questions</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">GeneratedCategorizedQuestion</span><span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="autochecklist.GeneratedCategorizedQuestion" class="doc doc-heading">
+            <code>GeneratedCategorizedQuestion</code>
+
+
+<a href="#autochecklist.GeneratedCategorizedQuestion" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="GeneratedQuestion (autochecklist.models.GeneratedQuestion)" href="models/#autochecklist.models.GeneratedQuestion">GeneratedQuestion</a></code></p>
+
+
+
+        <p>A generated yes/no question with a category label.</p>
+
+
+
+
+
+
+
+
+              <details class="mkdocstrings-source">
+                <summary>Source code in <code>autochecklist/models.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-279">279</a></span>
+<span class="normal"><a href="#__codelineno-0-280">280</a></span>
+<span class="normal"><a href="#__codelineno-0-281">281</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-279" name="__codelineno-0-279"></a><span class="k">class</span><span class="w"> </span><span class="nc">GeneratedCategorizedQuestion</span><span class="p">(</span><span class="n">GeneratedQuestion</span><span class="p">):</span>
+<a id="__codelineno-0-280" name="__codelineno-0-280"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;A generated yes/no question with a category label.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-281" name="__codelineno-0-281"></a>    <span class="n">category</span><span class="p">:</span> <span class="nb">str</span>
 </code></pre></div></td></tr></table></div>
               </details>
 
