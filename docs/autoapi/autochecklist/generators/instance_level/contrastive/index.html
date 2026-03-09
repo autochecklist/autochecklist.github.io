@@ -2543,8 +2543,8 @@ analysis.</p>
 <a id="__codelineno-0-154" name="__codelineno-0-154"></a>                <span class="p">)</span>
 <a id="__codelineno-0-155" name="__codelineno-0-155"></a>            <span class="n">format_kwargs</span><span class="p">[</span><span class="s2">&quot;reference&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">reference</span>
 <a id="__codelineno-0-156" name="__codelineno-0-156"></a>
-<a id="__codelineno-0-157" name="__codelineno-0-157"></a>        <span class="c1"># Load format instructions</span>
-<a id="__codelineno-0-158" name="__codelineno-0-158"></a>        <span class="n">format_text</span> <span class="o">=</span> <span class="n">load_format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_format_name</span><span class="p">)</span>
+<a id="__codelineno-0-157" name="__codelineno-0-157"></a>        <span class="c1"># Load format instructions (skip for custom schemas)</span>
+<a id="__codelineno-0-158" name="__codelineno-0-158"></a>        <span class="n">format_text</span> <span class="o">=</span> <span class="n">load_format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_format_name</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format_name</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
 <a id="__codelineno-0-159" name="__codelineno-0-159"></a>
 <a id="__codelineno-0-160" name="__codelineno-0-160"></a>        <span class="c1"># Inject format inline if template has {format_instructions} placeholder,</span>
 <a id="__codelineno-0-161" name="__codelineno-0-161"></a>        <span class="c1"># otherwise append after the prompt (default).</span>
