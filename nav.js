@@ -7,7 +7,7 @@ document.getElementById('nav').innerHTML = `
     </a>
     <ul class="nav-links">
       <li><a href="docs/">Docs</a></li>
-      <li><a href="/">Paper</a></li>
+      <li><a href="https://arxiv.org/abs/2603.07019">Paper</a></li>
       <li><a href="https://github.com/ChicagoHAI/AutoChecklist">GitHub</a></li>
     </ul>
   </div>
