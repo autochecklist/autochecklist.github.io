@@ -765,6 +765,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="How Output Parsing Works">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom-response-schemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Response Schemas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -2228,6 +2245,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="How Output Parsing Works">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom-response-schemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Response Schemas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -2390,6 +2424,34 @@
 <li>Otherwise, the schema is included in the prompt and the response is parsed via JSON extraction</li>
 </ul>
 <p>Custom generators registered via <code>register_custom_generator()</code> always use the unweighted <code>ChecklistResponse</code> schema. To use weighted output (<code>WeightedChecklistResponse</code>), instantiate <code>DirectGenerator</code> directly with <code>response_schema=WeightedChecklistResponse</code>.</p>
+<h3 id="custom-response-schemas">Custom Response Schemas<a class="headerlink" href="#custom-response-schemas" title="Permanent link">&para;</a></h3>
+<p>You can pass any Pydantic model as <code>response_schema</code> to define your own output structure. When a custom schema is provided, format instructions are skipped and the LLM is guided entirely via structured output enforcement.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">autochecklist</span><span class="w"> </span><span class="kn">import</span> <span class="n">DirectGenerator</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="k">class</span><span class="w"> </span><span class="nc">ActionItem</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>    <span class="n">item</span><span class="p">:</span> <span class="nb">str</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>    <span class="n">sources</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="k">class</span><span class="w"> </span><span class="nc">ActionItemsResponse</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>    <span class="n">questions</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">ActionItem</span><span class="p">]</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="n">gen</span> <span class="o">=</span> <span class="n">DirectGenerator</span><span class="p">(</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>    <span class="n">custom_prompt</span><span class="o">=</span><span class="s2">&quot;Generate evaluation criteria with source references for:</span><span class="se">\n\n</span><span class="si">{input}</span><span class="s2">&quot;</span><span class="p">,</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>    <span class="n">response_schema</span><span class="o">=</span><span class="n">ActionItemsResponse</span><span class="p">,</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;openai/gpt-5-mini&quot;</span><span class="p">,</span>
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="p">)</span>
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="n">checklist</span> <span class="o">=</span> <span class="n">gen</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="s2">&quot;Write a literature review.&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>The parser auto-detects the list field and question text:</p>
+<ul>
+<li><strong>List field</strong>: uses <code>questions</code> if present, otherwise the first list field (e.g., <code>items</code>, <code>criteria</code>)</li>
+<li><strong>Question text</strong>: uses <code>question</code> if present, otherwise the first <code>str</code> field (e.g., <code>item</code>, <code>text</code>)</li>
+<li><strong>Extra fields</strong>: any fields beyond the question text, <code>weight</code>, and <code>category</code> are preserved in <code>ChecklistItem.metadata</code></li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">checklist</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">question</span>   <span class="c1"># &quot;Is it cited?&quot;</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="n">checklist</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">metadata</span>   <span class="c1"># {&quot;sources&quot;: [1, 3]}</span>
+</code></pre></div>
 <p><strong>Scorers</strong> also use structured JSON output (<code>BatchScoringResponse</code>, <code>ItemScoringResponse</code>, etc.) with the same provider-level enforcement and fallback. Your custom scorer prompt does not need to dictate the output format.</p>
 
 
